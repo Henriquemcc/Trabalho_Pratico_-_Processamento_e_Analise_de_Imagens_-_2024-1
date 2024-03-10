@@ -97,8 +97,8 @@ Rezende, M.T., Silva, R., Bernardo, F.d.O. et al. Cric searchable image database
 
 ## Membros do Grupo
 
-[Felipe Costa Amaral]()
+[Felipe Costa Amaral](https://github.com/Flipecs)
 
-[Henrique Mendonça Castelar Campos]()
+[Henrique Mendonça Castelar Campos](https://github.com/Henriquemcc)
 
-[Larissa Kaweski Siqueira]()
+[Larissa Kaweski Siqueira](https://github.com/larissakaweski)
