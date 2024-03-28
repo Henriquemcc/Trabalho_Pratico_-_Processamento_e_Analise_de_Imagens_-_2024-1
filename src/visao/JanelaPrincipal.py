@@ -113,7 +113,7 @@ class JanelaPrincipal:
         # Menu arquivo
         menu_arquivo = tkinter.Menu(barra_menu, tearoff=0)
         # Item abrir imagem
-        menu_arquivo.add_command(label="Abrir imagem")
+        menu_arquivo.add_command(label="Abrir imagem", command=self.controlador.abrir_arquivo_imagem)
         # Adicionando menu arquivo
         barra_menu.add_cascade(label="Arquivo", menu=menu_arquivo)
 
