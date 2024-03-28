@@ -2,6 +2,10 @@ from controlador.Controlador import Controlador
 
 
 def main():
+    """
+    Função principal.
+    :return:
+    """
     controlador = Controlador()
 
 
