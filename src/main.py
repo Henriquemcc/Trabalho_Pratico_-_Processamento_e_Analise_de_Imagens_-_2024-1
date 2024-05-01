@@ -1,4 +1,4 @@
-from controlador.Controlador import Controlador
+from visao.JanelaPrincipal import JanelaPrincipal
 
 
 def main():
@@ -6,8 +6,8 @@ def main():
     Função principal.
     :return:
     """
-    controlador = Controlador()
-
+    janela = JanelaPrincipal()
+    janela.mainloop()
 
 if __name__ == '__main__':
     main()
