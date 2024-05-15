@@ -1,4 +1,6 @@
 import tkinter
+import PIL.Image
+import PIL.ImageTk
 
 from controlador import Controlador
 
@@ -7,6 +9,7 @@ class JanelaPrincipal:
     """
     Janela principal
     """
+
     def __init__(self, controlador: Controlador):
         """
         Constrói uma nova instância da JanelaPrinpal.
@@ -21,17 +24,34 @@ class JanelaPrincipal:
         self.root.title("Trabalho Prático - Processamento e Análise de Imagens - 2024-1")
 
         # Adicionando a barra de menus
-        self.adicionar_barra_de_menus()
+        self.__adicionar_barra_de_menus()
+
+        # Adicionando imagem
 
         # Maximizando a janela
         screen_width = self.root.winfo_screenwidth()
         screen_height = self.root.winfo_screenheight()
         self.root.geometry(f"{screen_width}x{screen_height}+0+0")
 
-        # Exibindo a janela principal
+    def exibir(self):
+        """
+        Exibe a janela principal.
+        """
         self.root.mainloop()
 
-    def adicionar_barra_de_menus(self):
+    def adicionar_imagem(self, caminho: str):
+        """
+        Adiciona uma imagem na janela.
+        :param caminho: Caminho da imagem a ser inserida.
+        :type caminho: String.
+        """
+        imagem = PIL.Image.open(caminho)
+        foto = PIL.ImageTk.PhotoImage(imagem)
+        legenda = tkinter.Label(self.root, image=foto)
+        legenda.image = foto
+        legenda.pack()
+
+    def __adicionar_barra_de_menus(self):
         """
         Adiciona a barra de menus ao Widget principal.
         :return:
@@ -39,18 +59,18 @@ class JanelaPrincipal:
 
         # Barra de menu
         barra_menu = tkinter.Menu(self.root)
-        self.adicionar_menu_arquivo(barra_menu)
-        self.adicionar_menu_editar(barra_menu)
-        self.adicionar_menu_visualizar(barra_menu)
-        self.adicionar_menu_converter(barra_menu)
-        self.adicionar_menu_gerar(barra_menu)
-        self.adicionar_menu_caracterizar(barra_menu)
-        self.adicionar_menu_classificar(barra_menu)
+        self.__adicionar_menu_arquivo(barra_menu)
+        self.__adicionar_menu_editar(barra_menu)
+        self.__adicionar_menu_visualizar(barra_menu)
+        self.__adicionar_menu_converter(barra_menu)
+        self.__adicionar_menu_gerar(barra_menu)
+        self.__adicionar_menu_caracterizar(barra_menu)
+        self.__adicionar_menu_classificar(barra_menu)
 
         # Adicionando barra de menus
         self.root.config(menu=barra_menu)
 
-    def adicionar_menu_arquivo(self, barra_menu: tkinter.Menu) -> None:
+    def __adicionar_menu_arquivo(self, barra_menu: tkinter.Menu) -> None:
         """
         Adiciona o menu arquivo á barra de menu.
         :param barra_menu: Barra de menu a qual será adicionada o menu arquivo.
@@ -64,7 +84,8 @@ class JanelaPrincipal:
         # Adicionando menu arquivo
         barra_menu.add_cascade(label="Arquivo", menu=menu_arquivo)
 
-    def adicionar_menu_editar(self, barra_menu: tkinter.Menu) -> None:
+    @staticmethod
+    def __adicionar_menu_editar(barra_menu: tkinter.Menu) -> None:
         """
         Adiciona o menu editar á barra de menu.
         :param barra_menu: Barra de menu a qual será adicionada o menu editar.
@@ -76,7 +97,8 @@ class JanelaPrincipal:
         # Adicionando menu editar
         barra_menu.add_cascade(label="Editar", menu=menu_editar)
 
-    def adicionar_menu_visualizar(self, barra_menu: tkinter.Menu) -> None:
+    @staticmethod
+    def __adicionar_menu_visualizar(barra_menu: tkinter.Menu) -> None:
         """
         Adiciona o menu visualizar á barra de menu.
         :param barra_menu: Barra de menu a qual será adicionada o menu visualizar.
@@ -96,7 +118,8 @@ class JanelaPrincipal:
         # Adicionando menu visualizar
         barra_menu.add_cascade(label="Visualizar", menu=menu_visualizar)
 
-    def adicionar_menu_converter(self, barra_menu: tkinter.Menu) -> None:
+    @staticmethod
+    def __adicionar_menu_converter(barra_menu: tkinter.Menu) -> None:
         """
         Adiciona o menu converter á barra de menu.
         :param barra_menu: Barra de menu a qual será adicionada o menu converter.
@@ -110,7 +133,8 @@ class JanelaPrincipal:
         # Adicionando menu converter
         barra_menu.add_cascade(label="Conveter", menu=menu_converter)
 
-    def adicionar_menu_gerar(self, barra_menu: tkinter.Menu) -> None:
+    @staticmethod
+    def __adicionar_menu_gerar(barra_menu: tkinter.Menu) -> None:
         """
         Adiciona o menu gerar á barra de menu.
         :param barra_menu: Barra de menu a qual será adicionada o menu gerar.
@@ -130,7 +154,8 @@ class JanelaPrincipal:
         # Adicionando menu gerar
         barra_menu.add_cascade(label="Gerar", menu=menu_gerar)
 
-    def adicionar_menu_caracterizar(self, barra_menu: tkinter.Menu) -> None:
+    @staticmethod
+    def __adicionar_menu_caracterizar(barra_menu: tkinter.Menu) -> None:
         """
         Adiciona o menu caracterizar á barra de menu.
         :param barra_menu: Barra de menu a qual será adicionada o menu caracterizar.
@@ -146,7 +171,8 @@ class JanelaPrincipal:
         # Adicionando menu caracterizar
         barra_menu.add_cascade(label="Caracterizar", menu=menu_caracterizar_imagem)
 
-    def adicionar_menu_classificar(self, barra_menu: tkinter.Menu) -> None:
+    @staticmethod
+    def __adicionar_menu_classificar(barra_menu: tkinter.Menu) -> None:
         """
         Adiciona o menu classificar á barra de menu.
         :param barra_menu: Barra de menu a qual será adicionada o menu classificar.

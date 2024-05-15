@@ -12,6 +12,7 @@ class Controlador:
         Constrói uma nova instância de Controlador.
         """
         self.janela_principal = JanelaPrincipal(self)
+        self.janela_principal.exibir()
 
     def abrir_arquivo_imagem(self) -> None:
         """
@@ -21,3 +22,6 @@ class Controlador:
         tipos_arquivos = [("Portable Network Graphics", ".png"), ("Joint Photographic Experts Group", ".jpeg"), ("Joint Photographic Experts Group", ".jpg")]
         dialogo_arquivo = DialogoArquivo(tipos_arquivos)
         caminho = dialogo_arquivo.abrir_arquivo()
+        print("caminho =", caminho, sep=" ")
+        self.janela_principal.adicionar_imagem(caminho)
+
