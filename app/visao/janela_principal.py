@@ -1,7 +1,7 @@
 import tkinter as tk
 
-from controlador.Controlador import Controlador
-from visao.Home import Home
+from controlador.controlador import Controlador
+from visao.home import Home
 
 
 class JanelaPrincipal(tk.Tk):
