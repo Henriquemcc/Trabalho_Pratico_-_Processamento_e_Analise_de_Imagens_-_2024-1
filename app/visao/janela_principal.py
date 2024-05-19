@@ -52,7 +52,10 @@ class JanelaPrincipal(tk.Tk):
 
         # Menu converter
         menu_converter = tk.Menu(barra_menu, tearoff=0)
-        menu_converter.add_command(label="Tons de cinza")
+        menu_converter.add_command(
+            label="Tons de cinza",
+            command=lambda: self.controlador.converter_imagem_rgb_para_imagem_tons_cinza()
+        )
         barra_menu.add_cascade(label="Conveter", menu=menu_converter)
 
         # Menu gerar
