@@ -11,9 +11,11 @@ class Controlador:
 
     def __init__(self):
         self.tipos_arquivos = [
+            ("Todos os formatos compatíveis", [".png", ".jpeg", ".jpg"]),
             ("Portable Network Graphics", ".png"),
             ("Joint Photographic Experts Group", ".jpeg"),
-            ("Joint Photographic Experts Group", ".jpg")
+            ("Joint Photographic Experts Group", ".jpg"),
+            ("Todos os formatos", "*")
         ]
 
         self.caminho = None
