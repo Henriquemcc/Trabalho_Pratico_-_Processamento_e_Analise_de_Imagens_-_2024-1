@@ -6,20 +6,15 @@ class ImagemRGB:
     """
     Representa uma imagem RGB.
     """
-    def __init__(self, matriz):
+    def __init__(self, matriz=None, caminho_arquivo=None):
         """
         Constrói uma nova instância de ImagemRGB.
         :param matriz: Matriz RGB.
+        :param caminho_arquivo: Caminho do arquivo.
         """
-        self.matriz = matriz
-
-    @staticmethod
-    def abrir_arquivo(caminho):
-        """
-        Constrói uma instância da classe ImagemRGB a partir de um arquivo.
-        :param caminho: Caminho do arquivo de imagem.
-        :return: Instância da classe ImagemRGB.
-        """
-        imagem = PIL.Image.open(caminho)
-        imagem_rgb = imagem.convert('RGB')
-        return ImagemRGB(numpy.array(imagem_rgb))
+        if matriz is not None:
+            self.matriz = matriz
+        elif caminho_arquivo is not None:
+            imagem = PIL.Image.open(caminho_arquivo)
+            imagem_rgb = imagem.convert('RGB')
+            self.matriz = numpy.array(imagem_rgb)
