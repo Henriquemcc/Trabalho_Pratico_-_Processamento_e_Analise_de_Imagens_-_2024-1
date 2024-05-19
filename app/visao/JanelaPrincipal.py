@@ -3,32 +3,33 @@ import tkinter as tk
 from controlador.Controlador import Controlador
 from visao.Home import Home
 
+
 class JanelaPrincipal(tk.Tk):
     """
     Janela principal
     """
 
-    def __init__(self,*args,**kwargs):
-        tk.Tk.__init__(self, *args, **kwargs)
+    def __init__(self, *args, **kwargs):
         """
         Constrói uma nova instância da JanelaPrinpal.
         :param controlador: Controlador que está criando esta JanelaPrincipal.
         """
+        tk.Tk.__init__(self, *args, **kwargs)
         # Controlador que instanciou a janela principal
         self.controlador = Controlador()
 
         # Widget principal
         self.title("Trabalho Prático - Processamento e Análise de Imagens - 2024-1")
-        
+
         # Maximizando a janela
-        screen_width = 400 #self.winfo_screenwidth()
-        screen_height = 300 #self.winfo_screenheight()
+        screen_width = 400  #self.winfo_screenwidth()
+        screen_height = 300  #self.winfo_screenheight()
         self.geometry(f"{screen_width}x{screen_height}+0+0")
 
         # Barra de menu
         barra_menu = tk.Menu(self)
-        
-            # Menu arquivo
+
+        # Menu arquivo
         menu_arquivo = tk.Menu(barra_menu, tearoff=0)
         menu_arquivo.add_command(
             label="Abrir imagem",
@@ -37,11 +38,11 @@ class JanelaPrincipal(tk.Tk):
 
         barra_menu.add_cascade(label="Arquivo", menu=menu_arquivo)
 
-            # Menu editar
+        # Menu editar
         menu_editar = tk.Menu(barra_menu, tearoff=0)
         barra_menu.add_cascade(label="Editar", menu=menu_editar)
 
-            # Menu visualizar
+        # Menu visualizar
         menu_visualizar = tk.Menu(barra_menu, tearoff=0)
         menu_visualizar.add_command(label="Exibir cores")
         menu_visualizar.add_command(label="Exibir tons de cinza")
@@ -49,12 +50,12 @@ class JanelaPrincipal(tk.Tk):
         menu_visualizar.add_command(label="Diminuir Zoom")
         barra_menu.add_cascade(label="Visualizar", menu=menu_visualizar)
 
-            # Menu converter
+        # Menu converter
         menu_converter = tk.Menu(barra_menu, tearoff=0)
         menu_converter.add_command(label="Tons de cinza")
         barra_menu.add_cascade(label="Conveter", menu=menu_converter)
 
-            # Menu gerar
+        # Menu gerar
         menu_gerar = tk.Menu(barra_menu, tearoff=0)
         submenu_histograma = tk.Menu(menu_gerar, tearoff=0)
         submenu_histograma.add_command(label="Tons de cinza")
@@ -62,18 +63,18 @@ class JanelaPrincipal(tk.Tk):
         menu_gerar.add_cascade(label="Histograma", menu=submenu_histograma)
         barra_menu.add_cascade(label="Gerar", menu=menu_gerar)
 
-            # Menu caracterizar imagem
+        # Menu caracterizar imagem
         menu_caracterizar_imagem = tk.Menu(barra_menu, tearoff=0)
         menu_caracterizar_imagem.add_command(label="Descritores de Haralick")
         menu_caracterizar_imagem.add_command(label="Momentos invariantes de Hu")
         barra_menu.add_cascade(label="Caracterizar", menu=menu_caracterizar_imagem)
 
-            # Menu classificar
+        # Menu classificar
         menu_classificar = tk.Menu(barra_menu, tearoff=0)
         menu_classificar.add_command(label="SVM")
         menu_classificar.add_command(label="ResNet50")
         barra_menu.add_cascade(label="Classificar", menu=menu_classificar)
-        
+
         self.config(menu=barra_menu)
 
         # Configurando mudança de página
@@ -95,7 +96,7 @@ class JanelaPrincipal(tk.Tk):
         self.show_frame("Home")
 
     def show_frame(self, page_name):
-        '''Shows the frame correspondent to the page_name'''
+        """Shows the frame correspondent to the page_name"""
         frame = self.frames[page_name]
         frame.tkraise()
 
