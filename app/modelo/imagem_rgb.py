@@ -18,3 +18,10 @@ class ImagemRGB:
             imagem = PIL.Image.open(caminho_arquivo)
             imagem_rgb = imagem.convert('RGB')
             self.matriz = numpy.array(imagem_rgb)
+
+    def to_image(self) -> PIL.Image.Image:
+        """
+        Converte ImagemRGB em uma PIL.Image.Image
+        :return: PIL.Image.Image gerada a partir de ImagemRGB.
+        """
+        return PIL.Image.fromarray(self.matriz)

@@ -24,7 +24,6 @@ class Controlador:
         self.caminho = None
         self.imagem_rgb = None
         self.imagem_tons_cinza = None
-        self.imagem = None
         self.foto = None
 
     def abrir_arquivo_imagem(self, f) -> None:
@@ -35,9 +34,8 @@ class Controlador:
         self.caminho = filedialog.askopenfilename(filetypes=self.tipos_arquivos)
         print("caminho =", self.caminho, sep=" ")
 
-        self.imagem = PIL.Image.open(self.caminho)
         self.imagem_rgb = ImagemRGB(caminho_arquivo=self.caminho)
-        self.foto = PIL.ImageTk.PhotoImage(self.imagem)
+        self.foto = PIL.ImageTk.PhotoImage(self.imagem_rgb.to_image())
 
         f(self.foto)
 
