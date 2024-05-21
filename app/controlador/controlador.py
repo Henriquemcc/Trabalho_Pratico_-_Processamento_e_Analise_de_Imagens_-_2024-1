@@ -4,7 +4,6 @@ import PIL.Image
 import PIL.ImageTk
 
 from modelo.imagem_rgb import ImagemRGB
-from modelo.imagem_tons_cinza import ImagemTonsCinza
 
 
 class Controlador:
@@ -34,7 +33,7 @@ class Controlador:
         self.caminho = filedialog.askopenfilename(filetypes=self.tipos_arquivos)
         print("caminho =", self.caminho, sep=" ")
 
-        self.imagem_rgb = ImagemRGB(caminho_arquivo=self.caminho)
+        self.imagem_rgb = ImagemRGB.from_file(self.caminho)
         self.foto = PIL.ImageTk.PhotoImage(self.imagem_rgb.to_image())
 
         f(self.foto)
@@ -44,4 +43,4 @@ class Controlador:
         Converte uma imagem RGB em uma imagem em tons de cinza.
         :return:
         """
-        self.imagem_tons_cinza = ImagemTonsCinza(imagem_rgb=self.imagem_rgb)
+        self.imagem_tons_cinza = self.imagem_rgb.to_imagem_tons_cinza()
