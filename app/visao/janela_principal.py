@@ -25,6 +25,38 @@ class FramePrincipal(tkinter.Frame):
         autor3 = tkinter.Label(self, text="Larissa Kaweski Siqueira")
         autor3.pack(side="top", fill="x", pady=10)
 
+
+class FrameImagem(tkinter.Frame):
+    """
+    Frame utilizado na exibição de imagens.
+    """
+
+    def __init__(self, parent, controller, imagem=None, legenda=None):
+        """
+        Constrói uma nova instância do FrameImagem.
+        :param parent: Widget pai.
+        :param controller: Controlador que instanciou esta classe.
+        :param imagem: Imagem inicial a ser exibida.
+        """
+        super().__init__()
+        self.parent = parent
+        self.controller = controller
+        if imagem is not None:
+            self.imagem = tkinter.Label(self, image=imagem, text=legenda)
+            self.imagem.image = imagem
+            self.imagem.pack()
+
+    def atualizar_imagem(self, imagem, legenda=None):
+        """
+        Atualiza a imagem do Frame Tkinter.
+        :param imagem: Nova imagem a ser adicionada.
+        :param legenda: Nova legenda a ser adicionada.
+        :return:
+        """
+        self.imagem.config(image=imagem, text=legenda)
+        self.imagem.image = imagem
+
+
 class JanelaPrincipal(tkinter.Tk):
     """
     Janela principal
