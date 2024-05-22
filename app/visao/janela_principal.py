@@ -1,7 +1,16 @@
 import tkinter
 
 from controlador.controlador import Controlador
-from visao.home import Home
+
+
+class FramePrincipal(tkinter.Frame):
+    """
+    Frame Principal.
+    """
+
+    def __init__(self, parent, controller):
+        tkinter.Frame.__init__(self, parent)
+        self.controller = controller
 
 
 class JanelaPrincipal(tkinter.Tk):
@@ -88,7 +97,7 @@ class JanelaPrincipal(tkinter.Tk):
 
         # Controle de paginas
         self.frames = {}
-        for F in (Home,):
+        for F in (FramePrincipal,):
             page_name = F.__name__
             frame = F(container, controller=self)
             self.frames[page_name] = frame
@@ -96,7 +105,7 @@ class JanelaPrincipal(tkinter.Tk):
             # Stack the pages on top of each other so theycan be switched
             frame.grid(row=0, column=0, sticky="nsew")
 
-        self.show_frame("Home")
+        self.show_frame("FramePrincipal")
 
     def show_frame(self, page_name):
         """Shows the frame correspondent to the page_name"""
