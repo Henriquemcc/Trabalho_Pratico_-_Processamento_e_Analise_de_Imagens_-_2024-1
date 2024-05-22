@@ -11,7 +11,14 @@ class FramePrincipal(tkinter.Frame):
     def __init__(self, parent, controller):
         tkinter.Frame.__init__(self, parent)
         self.controller = controller
-
+        titulo = tkinter.Label(self, text="Trabalho Prático - Processamento e Análise de Imagens - 2024-1")
+        titulo.pack(side="top", fill="x", pady=10)
+        autor1 = tkinter.Label(self, text="Felipe Costa Amaral")
+        autor1.pack(side="top", fill="x", pady=10)
+        autor2 = tkinter.Label(self, text="Henrique Mendonça Castelar Campos")
+        autor2.pack(side="top", fill="x", pady=10)
+        autor3 = tkinter.Label(self, text="Larissa Kaweski Siqueira")
+        autor3.pack(side="top", fill="x", pady=10)
 
 class JanelaPrincipal(tkinter.Tk):
     """
@@ -31,7 +38,7 @@ class JanelaPrincipal(tkinter.Tk):
         self.title("Trabalho Prático - Processamento e Análise de Imagens - 2024-1")
 
         # Maximizando a janela
-        screen_width = 400  #self.winfo_screenwidth()
+        screen_width = 500  #self.winfo_screenwidth()
         screen_height = 300  #self.winfo_screenheight()
         self.geometry(f"{screen_width}x{screen_height}+0+0")
 
