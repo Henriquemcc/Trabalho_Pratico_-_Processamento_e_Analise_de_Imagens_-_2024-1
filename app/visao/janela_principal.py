@@ -9,6 +9,11 @@ class FramePrincipal(tkinter.Frame):
     """
 
     def __init__(self, parent, controller):
+        """
+        Constrói uma nova instância do FramePrincipal.
+        :param parent: Widget pai.
+        :param controller: Controlador que instanciou esta classe.
+        """
         tkinter.Frame.__init__(self, parent)
         self.controller = controller
         titulo = tkinter.Label(self, text="Trabalho Prático - Processamento e Análise de Imagens - 2024-1")
