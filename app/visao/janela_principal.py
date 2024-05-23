@@ -1,6 +1,7 @@
 import tkinter
 
 import PIL.ImageTk
+import PIL.Image
 
 from controlador.controlador import Controlador
 
@@ -41,15 +42,20 @@ class FrameImagem(tkinter.Frame):
         """
         tkinter.Frame.__init__(self, parent)
         self.controller = controller
-        self.label = None
+        self.label = tkinter.Label(self)
 
-    def set_imagem(self, photo_image: PIL.ImageTk.PhotoImage, legenda=None):
+    def set_imagem(self, image: PIL.Image.Image, legenda=None):
         """
         Atualiza a imagem do Frame Tkinter.
-        :param photo_image: Nova imagem a ser adicionada.
+        :param image: Nova imagem a ser adicionada.
         :param legenda: Nova legenda a ser adicionada.
         :return:
         """
+        label_width = self.label.winfo_width()
+        label_height = self.label.winfo_height()
+        if label_width > 1 and label_height > 1:
+            image = image.resize((label_width, label_height))
+        photo_image = PIL.ImageTk.PhotoImage(image)
         if self.label is None:
             self.label = tkinter.Label(self, image=photo_image, text=legenda)
         else:
@@ -157,11 +163,11 @@ class JanelaPrincipal(tkinter.Tk):
         frame = self.frames[page_name]
         frame.tkraise()
 
-    def adicionar_imagem(self, photo_image: PIL.ImageTk.PhotoImage):
+    def adicionar_imagem(self, image: PIL.Image.Image):
         """
         Adiciona uma imagem na janela.
-        :param photo_image: Imagem a ser inserida.
+        :param image: Imagem a ser inserida.
         :type caminho: ImageTk.
         """
-        self.frames["FrameImagem"].set_imagem(photo_image)
+        self.frames["FrameImagem"].set_imagem(image)
         self.show_frame("FrameImagem")

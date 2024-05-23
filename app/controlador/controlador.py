@@ -31,11 +31,8 @@ class Controlador:
         :return:
         """
         self.caminho = filedialog.askopenfilename(filetypes=self.tipos_arquivos)
-
         self.imagem_rgb = ImagemRGB.from_file(self.caminho)
-        self.photo_image = PIL.ImageTk.PhotoImage(self.imagem_rgb.to_image())
-
-        f(self.photo_image)
+        f(self.imagem_rgb.to_image())
 
     def converter_imagem_rgb_para_imagem_tons_cinza(self) -> None:
         """
