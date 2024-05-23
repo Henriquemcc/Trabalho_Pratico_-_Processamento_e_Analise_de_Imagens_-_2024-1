@@ -31,30 +31,31 @@ class FrameImagem(tkinter.Frame):
     Frame utilizado na exibição de imagens.
     """
 
-    def __init__(self, parent, controller, imagem=None, legenda=None):
+    def __init__(self, parent, controller):
         """
         Constrói uma nova instância do FrameImagem.
         :param parent: Widget pai.
         :param controller: Controlador que instanciou esta classe.
-        :param imagem: Imagem inicial a ser exibida.
         """
-        super().__init__()
-        self.parent = parent
+        tkinter.Frame.__init__(self, parent)
         self.controller = controller
-        if imagem is not None:
-            self.imagem = tkinter.Label(self, image=imagem, text=legenda)
-            self.imagem.image = imagem
-            self.imagem.pack()
+        self.imagem = None
 
-    def atualizar_imagem(self, imagem, legenda=None):
+    def set_imagem(self, imagem, legenda=None):
         """
         Atualiza a imagem do Frame Tkinter.
         :param imagem: Nova imagem a ser adicionada.
         :param legenda: Nova legenda a ser adicionada.
         :return:
         """
-        self.imagem.config(image=imagem, text=legenda)
-        self.imagem.image = imagem
+        if self.imagem is None:
+            self.imagem = tkinter.Label(self, image=imagem, text=legenda)
+            self.imagem.image = imagem
+            self.imagem.pack()
+        else:
+            self.imagem.config(image=imagem, text=legenda)
+            self.imagem.image = imagem
+            self.imagem.pack()
 
 
 class JanelaPrincipal(tkinter.Tk):
@@ -75,8 +76,8 @@ class JanelaPrincipal(tkinter.Tk):
         self.title("Trabalho Prático - Processamento e Análise de Imagens - 2024-1")
 
         # Maximizando a janela
-        screen_width = 500  #self.winfo_screenwidth()
-        screen_height = 300  #self.winfo_screenheight()
+        screen_width = 500
+        screen_height = 300
         self.geometry(f"{screen_width}x{screen_height}+0+0")
 
         # Barra de menu
@@ -135,13 +136,13 @@ class JanelaPrincipal(tkinter.Tk):
 
         # Configurando mudança de página
         container = tkinter.Frame(self)
-        container.pack(side="top", fill="x", expand=True)
+        container.pack(side="top", fill="both", expand=True)
         container.grid_rowconfigure(0, weight=1)
         container.grid_columnconfigure(0, weight=1)
 
         # Controle de paginas
         self.frames = {}
-        for F in (FramePrincipal,):
+        for F in (FramePrincipal, FrameImagem):
             page_name = F.__name__
             frame = F(container, controller=self)
             self.frames[page_name] = frame
@@ -162,6 +163,5 @@ class JanelaPrincipal(tkinter.Tk):
         :param foto: Imagem a ser inserida.
         :type caminho: ImageTk.
         """
-        legenda = tkinter.Label(self, image=foto)
-        legenda.image = foto
-        legenda.pack()
+        self.frames["FrameImagem"].set_imagem(foto)
+        self.show_frame("FrameImagem")
