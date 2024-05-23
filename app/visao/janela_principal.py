@@ -202,7 +202,6 @@ class JanelaPrincipal(tkinter.Tk):
         """
         Adiciona uma imagem na janela.
         :param image: Imagem a ser inserida.
-        :type caminho: ImageTk.
         """
         self.frames["FrameImagem"].image = image
         self.show_frame("FrameImagem")
