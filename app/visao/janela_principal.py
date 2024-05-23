@@ -157,11 +157,11 @@ class JanelaPrincipal(tkinter.Tk):
         frame = self.frames[page_name]
         frame.tkraise()
 
-    def adicionar_imagem(self, foto):
+    def adicionar_imagem(self, photo_image: PIL.ImageTk.PhotoImage):
         """
         Adiciona uma imagem na janela.
-        :param foto: Imagem a ser inserida.
+        :param photo_image: Imagem a ser inserida.
         :type caminho: ImageTk.
         """
-        self.frames["FrameImagem"].set_imagem(foto)
+        self.frames["FrameImagem"].set_imagem(photo_image)
         self.show_frame("FrameImagem")
