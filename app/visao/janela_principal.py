@@ -50,12 +50,10 @@ class FrameImagem(tkinter.Frame):
         """
         if self.imagem is None:
             self.imagem = tkinter.Label(self, image=imagem, text=legenda)
-            self.imagem.image = imagem
-            self.imagem.pack()
         else:
             self.imagem.config(image=imagem, text=legenda)
-            self.imagem.image = imagem
-            self.imagem.pack()
+        self.imagem.image = imagem
+        self.imagem.pack()
 
 
 class JanelaPrincipal(tkinter.Tk):
