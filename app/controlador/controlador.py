@@ -31,7 +31,6 @@ class Controlador:
         :return:
         """
         self.caminho = filedialog.askopenfilename(filetypes=self.tipos_arquivos)
-        print("caminho =", self.caminho, sep=" ")
 
         self.imagem_rgb = ImagemRGB.from_file(self.caminho)
         self.photo_image = PIL.ImageTk.PhotoImage(self.imagem_rgb.to_image())
