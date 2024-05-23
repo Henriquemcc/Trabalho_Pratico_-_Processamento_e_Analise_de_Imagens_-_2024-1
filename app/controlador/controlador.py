@@ -23,7 +23,7 @@ class Controlador:
         self.caminho = None
         self.imagem_rgb = None
         self.imagem_tons_cinza = None
-        self.foto = None
+        self.photo_image = None
 
     def abrir_arquivo_imagem(self, f) -> None:
         """
@@ -34,9 +34,9 @@ class Controlador:
         print("caminho =", self.caminho, sep=" ")
 
         self.imagem_rgb = ImagemRGB.from_file(self.caminho)
-        self.foto = PIL.ImageTk.PhotoImage(self.imagem_rgb.to_image())
+        self.photo_image = PIL.ImageTk.PhotoImage(self.imagem_rgb.to_image())
 
-        f(self.foto)
+        f(self.photo_image)
 
     def converter_imagem_rgb_para_imagem_tons_cinza(self) -> None:
         """
