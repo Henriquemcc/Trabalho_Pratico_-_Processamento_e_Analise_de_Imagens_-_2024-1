@@ -1,5 +1,7 @@
 import tkinter
 
+import PIL.ImageTk
+
 from controlador.controlador import Controlador
 
 
@@ -39,21 +41,21 @@ class FrameImagem(tkinter.Frame):
         """
         tkinter.Frame.__init__(self, parent)
         self.controller = controller
-        self.imagem = None
+        self.label = None
 
-    def set_imagem(self, imagem, legenda=None):
+    def set_imagem(self, photo_image: PIL.ImageTk.PhotoImage, legenda=None):
         """
         Atualiza a imagem do Frame Tkinter.
-        :param imagem: Nova imagem a ser adicionada.
+        :param photo_image: Nova imagem a ser adicionada.
         :param legenda: Nova legenda a ser adicionada.
         :return:
         """
-        if self.imagem is None:
-            self.imagem = tkinter.Label(self, image=imagem, text=legenda)
+        if self.label is None:
+            self.label = tkinter.Label(self, image=photo_image, text=legenda)
         else:
-            self.imagem.config(image=imagem, text=legenda)
-        self.imagem.image = imagem
-        self.imagem.pack()
+            self.label.config(image=photo_image, text=legenda)
+        self.label.image = photo_image
+        self.label.pack()
 
 
 class JanelaPrincipal(tkinter.Tk):
