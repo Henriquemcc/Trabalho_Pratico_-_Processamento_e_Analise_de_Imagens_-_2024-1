@@ -41,8 +41,10 @@ class FrameImagem(tkinter.Frame):
         :param controller: Controlador que instanciou esta classe.
         """
         tkinter.Frame.__init__(self, parent)
+        self.on_resize = None
         self.controller = controller
         self.label = tkinter.Label(self)
+        self.label.pack(fill="both", expand=True)
 
     def set_imagem(self, image: PIL.Image.Image, legenda=None):
         """
@@ -56,12 +58,9 @@ class FrameImagem(tkinter.Frame):
         if label_width > 1 and label_height > 1:
             image = image.resize((label_width, label_height))
         photo_image = PIL.ImageTk.PhotoImage(image)
-        if self.label is None:
-            self.label = tkinter.Label(self, image=photo_image, text=legenda)
-        else:
-            self.label.config(image=photo_image, text=legenda)
+        self.label.config(image=photo_image, text=legenda)
         self.label.image = photo_image
-        self.label.pack()
+
 
 
 class JanelaPrincipal(tkinter.Tk):
