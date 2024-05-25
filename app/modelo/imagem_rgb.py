@@ -2,6 +2,7 @@ import PIL.Image
 import numpy
 
 from modelo.imagem import Imagem
+from modelo.imagem_hsv import ImagemHSV
 from modelo.imagem_tons_cinza import ImagemTonsCinza
 
 
@@ -27,3 +28,10 @@ class ImagemRGB(Imagem):
         :return: ImagemTonsCinza gerado a partir de ImagemRGB.
         """
         return ImagemTonsCinza(numpy.array(self.to_image().convert('L')))
+
+    def to_hsv(self):
+        """
+        Converte a imagem RGB para HSV.
+        :return: ImagemHSV gerada a partir de ImagemRGB.
+        """
+        return ImagemHSV(numpy.array(self.to_image().convert('HSV')))
