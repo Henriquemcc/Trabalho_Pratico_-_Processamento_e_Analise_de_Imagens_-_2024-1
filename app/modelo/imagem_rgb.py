@@ -29,7 +29,7 @@ class ImagemRGB(Imagem):
         """
         return ImagemTonsCinza(numpy.array(self.to_image().convert('L')))
 
-    def to_hsv(self):
+    def to_imagem_hsv(self):
         """
         Converte a imagem RGB para HSV.
         :return: ImagemHSV gerada a partir de ImagemRGB.
