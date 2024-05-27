@@ -1,4 +1,4 @@
-from modelo.imagem import Imagem
+from .imagem import Imagem
 
 
 class ImagemHSV(Imagem):

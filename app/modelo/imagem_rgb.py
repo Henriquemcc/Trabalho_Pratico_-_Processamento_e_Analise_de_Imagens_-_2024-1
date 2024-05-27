@@ -1,9 +1,9 @@
 import PIL.Image
 import numpy
 
-from modelo.imagem import Imagem
-from modelo.imagem_hsv import ImagemHSV
-from modelo.imagem_tons_cinza import ImagemTonsCinza
+from .imagem import Imagem
+from .imagem_hsv import ImagemHSV
+from .imagem_tons_cinza import ImagemTonsCinza
 
 
 class ImagemRGB(Imagem):

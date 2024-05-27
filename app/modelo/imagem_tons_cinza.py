@@ -1,6 +1,6 @@
 import cv2
 
-from modelo.imagem import Imagem
+from .imagem import Imagem
 
 
 class ImagemTonsCinza(Imagem):
