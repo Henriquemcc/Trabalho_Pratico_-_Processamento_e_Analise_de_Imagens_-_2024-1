@@ -1,3 +1,5 @@
+import cv2
+
 from modelo.imagem import Imagem
 
 
@@ -22,3 +24,10 @@ class ImagemTonsCinza(Imagem):
                     histograma[pixel] = 1
         return histograma
 
+    def to_momentos_invariantes_hu(self):
+        """
+        Calcula os Momentos Invariantes de Hu.
+        """
+        momentos = cv2.moments(self.matriz)
+        momentos_hu = cv2.HuMoments(momentos)
+        return momentos_hu
