@@ -1,14 +1,5 @@
 # Treina o modelo ResNet50
 
-# Instalando requisitos
-print('Instalando requisitos...')
-import os
-os.system('pip install -r ./app/requirements.txt -q')
-os.system('pip install pandas -q')
-os.system('pip install scikit-learn -q')
-os.system('pip install tensorflow -q')
-os.system('pip install numpy -q')
-
 # Importando requisitos
 print('Importando requisitos...')
 from app.modelo.imagem_rgb import ImagemRGB
@@ -18,6 +9,7 @@ import tensorflow
 import os
 import numpy
 import pickle
+import random
 
 # Definindo variáveis
 print('Definindo variáveis...')
@@ -27,6 +19,11 @@ num_classes = 6
 # Abrindo base de dados
 print('Abrindo base de dados...')
 data_frame = pandas.read_csv("classifications.csv")
+data_frame['random'] = data_frame[data_frame.columns[0]].apply(lambda _: random.random())
+data_frame.sort_values(
+    by='random',
+    inplace=True
+)
 
 # Separando o x
 print('Separando o x...')
@@ -95,6 +92,7 @@ for index, image_path in enumerate(x_train):
 # Exportando o modelo treinado
 print('Exportando o modelo treinado...')
 modelo.save('modelo.keras')
+modelo.save_weights('pesos.weights.h5')
 
 # Testando o modelo
 print('Testando o modelo...')
