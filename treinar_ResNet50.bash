@@ -16,8 +16,8 @@ date="$(date "+%d-%m-%Y_%H:%M:%S")"
 python3 ./treinar_ResNet50.py 2>&1 | tee "./logs/treinar_ResNet50.${date}.log"
 
 # Adding timestamp to created files
-mv ./modelo.h5 "./logs/modelo.${date}.h5"
-mv ./modelo.keras "./logs/modelo.${date}.keras"
-mv ./pesos.weights.h5 "./logs/pesos.${date}.weights.h5"
-mv ./predicoes.pkl "./logs/predicoes.${date}.pkl"
-mv ./data.pkl "./logs/data.${date}.pkl"
+mv ./modelo.h5 "./modelo.${date}.h5"
+mv ./modelo.keras "./modelo.${date}.keras"
+mv ./pesos.weights.h5 "./pesos.${date}.weights.h5"
+mv ./predicoes.pkl "./predicoes.${date}.pkl"
+mv ./data.pkl "./data.${date}.pkl"
