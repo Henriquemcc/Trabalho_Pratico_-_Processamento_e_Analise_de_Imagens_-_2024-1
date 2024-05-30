@@ -19,11 +19,25 @@ num_classes = 6
 # Abrindo base de dados
 print('Abrindo base de dados...')
 data_frame = pandas.read_csv("classifications.csv")
+
+# Adicionando coluna path
+print('Adicionando coluna path...')
+for index, row in data_frame.iterrows():
+    data_frame.at[index, 'path'] = os.path.join(image_directory, row['bethesda_system'], "{}.png".format(row['cell_id']))
+
+# Adicionando coluna random e ordenando por meio dela
+print('Adicionando coluna random e ordenando por meio dela...')
 data_frame['random'] = data_frame[data_frame.columns[0]].apply(lambda _: random.random())
 data_frame.sort_values(
     by='random',
     inplace=True
 )
+
+# Removendo imagens que não existem
+print('Removendo imagens que não existem...')
+for index, row in data_frame.iterrows():
+    if not os.path.exists(row['path']):
+        data_frame.drop(index, inplace=True)
 
 # Separando o x
 print('Separando o x...')
@@ -31,16 +45,22 @@ x = []
 for index, row in data_frame.iterrows():
     x.append(os.path.join(image_directory, row['bethesda_system'], "{}.png".format(row['cell_id'])))
 x = pandas.array(x)
+print('x.shape = {}'.format(x.shape))
 
 # Separando o y
 print('Separando o y...')
 y = data_frame.iloc[:, 4].values
 label_encoder = sklearn.preprocessing.LabelEncoder()
 y = label_encoder.fit_transform(y)
+print('y.shape = {}'.format(y.shape))
 
 # Separando o conjunto de treino e teste
 print('Separando o conjunto de treino e teste...')
 x_train, x_test, y_train, y_test = sklearn.model_selection.train_test_split(x, y)
+print('x_train.shape = {}'.format(x_train.shape))
+print('x_test.shape = {}'.format(x_test.shape))
+print('y_train.shape = {}'.format(y_train.shape))
+print('y_test.shape = {}'.format(y_test.shape))
 
 # Exportando x_test, x_train, y_test, y_train para um arquivo externo
 print('Exportando x_test, x_train, y_test, y_train para um arquivo externo...')
@@ -104,6 +124,7 @@ for index, image_path in enumerate(x_test):
         predicao = modelo.predict(imagem_preprocessada)
         predicoes.append(predicao)
 predicoes = numpy.array(predicoes)
+print('predicoes.shape = {}'.format(predicoes.shape))
 
 # Exportando as predições
 print('Exportando as predições...')
