@@ -1,12 +1,27 @@
 import cv2
+import numpy
 
 from .imagem import Imagem
-
+from PIL import Image
 
 class ImagemTonsCinza(Imagem):
     """
     Representa uma matriz de tons de cinza.
     """
+    @staticmethod
+    def from_file(file_path):
+        """
+        Cria uma classe ImagemTonsCinza a partir de um arquivo de imagem (.png, .jpg ou .jpeg).
+        :param file_path: Caminho do arquivo da imagem.
+        :return: Instância da classe ImagemTonsCinza criado a partir do arquivo de imagem.
+        """
+        imagem = Image.open(file_path)
+        imagem = imagem.convert('L')
+        return ImagemTonsCinza(numpy.array(imagem))
+
+    @staticmethod
+    def from_image(imagem):
+        return ImagemTonsCinza(numpy.array(imagem.to_image().convert('L')))
 
     def to_histograma(self, n_bin=16):
         """

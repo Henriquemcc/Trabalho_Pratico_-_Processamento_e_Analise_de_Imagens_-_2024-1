@@ -1,5 +1,4 @@
-import PIL
-import PIL.Image
+from PIL import Image
 
 
 class Imagem:
@@ -13,9 +12,9 @@ class Imagem:
         """
         self.matriz = matriz
 
-    def to_image(self) -> PIL.Image.Image:
+    def to_image(self) -> Image:
         """
-        Converte ImagemRGB em uma PIL.Image.Image
-        :return: PIL.Image.Image gerada a partir de ImagemRGB.
+        Converte ImagemRGB em uma Image
+        :return: Image gerada a partir de ImagemRGB.
         """
-        return PIL.Image.fromarray(self.matriz)
+        return Image.fromarray(self.matriz)
