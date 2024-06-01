@@ -1,21 +1,48 @@
-import PIL.Image
+import cv2
+import numpy
 
+from .imagem import Imagem
+from PIL import Image
 
-class ImagemTonsCinza:
+class ImagemTonsCinza(Imagem):
     """
     Representa uma matriz de tons de cinza.
     """
+    @staticmethod
+    def from_file(file_path):
+        """
+        Cria uma classe ImagemTonsCinza a partir de um arquivo de imagem (.png, .jpg ou .jpeg).
+        :param file_path: Caminho do arquivo da imagem.
+        :return: Instância da classe ImagemTonsCinza criado a partir do arquivo de imagem.
+        """
+        imagem = Image.open(file_path)
+        imagem = imagem.convert('L')
+        return ImagemTonsCinza(numpy.array(imagem))
 
-    def __init__(self, matriz):
-        """
-        Constrói uma nova instância da classe ImagemTonsCinza.
-        :param matriz: Matriz de tons de cinza.
-        """
-        self.matriz = matriz
+    @staticmethod
+    def from_image(imagem):
+        return ImagemTonsCinza(numpy.array(imagem.to_image().convert('L')))
 
-    def to_image(self) -> PIL.Image.Image:
+    def to_histograma(self, n_bin=16):
         """
-        Converte ImagemTonsCinza em uma PIL.Image.Image
-        :return: PIL.Image.Image gerada a partir de ImagemTonsCinza.
+        Gera um histograma da imagem.
+        :param n_bin: Número de caixas do histograma.
         """
-        return PIL.Image.fromarray(self.matriz, mode='L')
+        histograma = {}
+        intervalo = 256 // n_bin
+        for linha in range(self.matriz.shape[0]):
+            for coluna in range(self.matriz.shape[1]):
+                pixel = (self.matriz[linha][coluna] // intervalo) * intervalo
+                if pixel in histograma:
+                    histograma[pixel] += 1
+                else:
+                    histograma[pixel] = 1
+        return histograma
+
+    def to_momentos_invariantes_hu(self):
+        """
+        Calcula os Momentos Invariantes de Hu.
+        """
+        momentos = cv2.moments(self.matriz)
+        momentos_hu = cv2.HuMoments(momentos)
+        return momentos_hu

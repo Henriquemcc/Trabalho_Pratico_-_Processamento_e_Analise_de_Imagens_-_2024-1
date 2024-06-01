@@ -1,103 +1,8 @@
 import tkinter
 
-import PIL.ImageTk
-import PIL.Image
-
 from controlador.controlador import Controlador
-
-
-class FramePrincipal(tkinter.Frame):
-    """
-    Frame Principal.
-    """
-
-    def __init__(self, parent, controller):
-        """
-        Constrói uma nova instância do FramePrincipal.
-        :param parent: Widget pai.
-        :param controller: Controlador que instanciou esta classe.
-        """
-        tkinter.Frame.__init__(self, parent)
-        self.controller = controller
-        titulo = tkinter.Label(self, text="Trabalho Prático - Processamento e Análise de Imagens - 2024-1")
-        titulo.pack(side="top", fill="x", pady=10)
-        autor1 = tkinter.Label(self, text="Felipe Costa Amaral")
-        autor1.pack(side="top", fill="x", pady=10)
-        autor2 = tkinter.Label(self, text="Henrique Mendonça Castelar Campos")
-        autor2.pack(side="top", fill="x", pady=10)
-        autor3 = tkinter.Label(self, text="Larissa Kaweski Siqueira")
-        autor3.pack(side="top", fill="x", pady=10)
-
-
-class FrameImagem(tkinter.Frame):
-    """
-    Frame utilizado na exibição de imagens.
-    """
-
-    def __init__(self, parent, controller):
-        """
-        Constrói uma nova instância do FrameImagem.
-        :param parent: Widget pai.
-        :param controller: Controlador que instanciou esta classe.
-        """
-        tkinter.Frame.__init__(self, parent)
-        self.__image = None
-        self.__legenda = None
-        self.on_resize = None
-        self.controller = controller
-        self.label = tkinter.Label(self)
-        self.label.pack(fill="both", expand=True)
-
-    @property
-    def image(self):
-        """
-        Obtém a imagem atual.
-        :return:
-        """
-        return self.__image
-
-    @image.setter
-    def image(self, image):
-        """
-        Altera a imagem atual.
-        :param image: Imagem a ser colocada no lugar.
-        :return:
-        """
-        self.__image = image
-        self.__imagem_atualizada()
-
-    @property
-    def legenda(self):
-        """
-        Obtém a legenda atual.
-        :return: Legenda atual.
-        """
-        return self.__legenda
-
-    @legenda.setter
-    def legenda(self, legenda):
-        """
-        Altera a legenda atual.
-        :param legenda: Legenda a ser colocada no lugar.
-        :return:
-        """
-        self.__legenda = legenda
-        self.__imagem_atualizada()
-
-    def __imagem_atualizada(self):
-        """
-        Ação executada quando a imagem é atualizada.
-        :return:
-        """
-        image = self.image
-        label_width = self.label.winfo_width()
-        label_height = self.label.winfo_height()
-        if label_width > 1 and label_height > 1:
-            image = image.resize((label_width, label_height))
-        photo_image = PIL.ImageTk.PhotoImage(image)
-        self.label.config(image=photo_image, text=self.legenda)
-        self.label.image = photo_image
-
+from visao.frame_principal import FramePrincipal
+from visao.frame_imagem import FrameImagem
 
 class JanelaPrincipal(tkinter.Tk):
     """
@@ -149,7 +54,15 @@ class JanelaPrincipal(tkinter.Tk):
         menu_converter = tkinter.Menu(barra_menu, tearoff=0)
         menu_converter.add_command(
             label="Tons de cinza",
-            command=lambda: self.controlador.converter_imagem_rgb_para_imagem_tons_cinza()
+            command=lambda: self.controlador.exibir_imagem_rgb(self.adicionar_imagem)
+        )
+        menu_converter.add_command(
+            label="Tons de cinza",
+            command=lambda: self.controlador.exibir_imagem_tons_cinza(self.adicionar_imagem)
+        )
+        menu_converter.add_command(
+            label="HSV",
+            command=lambda: self.controlador.exibir_imagem_hsv(self.adicionar_imagem)
         )
         barra_menu.add_cascade(label="Conveter", menu=menu_converter)
 
@@ -198,7 +111,7 @@ class JanelaPrincipal(tkinter.Tk):
         frame = self.frames[page_name]
         frame.tkraise()
 
-    def adicionar_imagem(self, image: PIL.Image.Image):
+    def adicionar_imagem(self, image):
         """
         Adiciona uma imagem na janela.
         :param image: Imagem a ser inserida.
