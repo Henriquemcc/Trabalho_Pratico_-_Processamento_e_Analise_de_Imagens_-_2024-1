@@ -81,36 +81,40 @@ class Controlador:
         self.__gerar_imagem_hsv()
         f(self.imagem_hsv.to_image())
 
-    def __gerar_histograma_cinza(self):
+    def __gerar_histograma_cinza(self, waiting=lambda: None, ending=lambda: None):
         if (self.update_histograma_cinza):
+            waiting()
             self.histograma_cinza = self.imagem_tons_cinza.to_histograma()
+            ending()
             self.update_histograma_cinza = False
 
-    def __gerar_histograma_hsv(self):
+    def __gerar_histograma_hsv(self, waiting=lambda: None, ending=lambda: None):
         if (self.update_histograma_hsv):
+            waiting()
             self.histograma_hsv = self.imagem_hsv.to_histograma()
+            ending()
             self.update_histograma_hsv = False
 
-    def exibir_histograma_tons_cinza(self, f) -> None:
+    def exibir_histograma_tons_cinza(self, f, waiting=lambda: None, ending=lambda: None) -> None:
         self.__gerar_imagem_cinza()
-        self.__gerar_histograma_cinza()
+        self.__gerar_histograma_cinza(waiting=waiting, ending=ending)
         plot = self.__extract_2d_bar(self.histograma_cinza)
         f(plot)
 
-    def exibir_histograma_hsv_hue(self, f) -> None:
+    def exibir_histograma_hsv_hue(self, f, waiting=lambda: None, ending=lambda: None) -> None:
         self.__gerar_imagem_hsv()
-        self.__gerar_histograma_hsv()
+        self.__gerar_histograma_hsv(waiting=waiting, ending=ending)
         plot = self.__extract_2d_bar(self.histograma_hsv[0])
         f(plot)
 
-    def exibir_histograma_hsv_saturation(self, f) -> None:
+    def exibir_histograma_hsv_saturation(self, f, waiting=lambda: None, ending=lambda: None) -> None:
         self.__gerar_imagem_hsv()
-        self.__gerar_histograma_hsv()
+        self.__gerar_histograma_hsv(waiting=waiting, ending=ending)
         plot = self.__extract_2d_bar(self.histograma_hsv[1])
         f(plot)
 
-    def exibir_histograma_hsv_value(self, f) -> None:
-        self.__gerar_imagem_hsv()
+    def exibir_histograma_hsv_value(self, f, waiting=lambda: None, ending=lambda: None) -> None:
+        self.__gerar_imagem_hsv(waiting=waiting, ending=ending)
         self.__gerar_histograma_hsv()
         plot = self.__extract_2d_bar(self.histograma_hsv[2])
         f(plot)

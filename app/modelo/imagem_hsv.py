@@ -1,5 +1,6 @@
 import numpy
 
+from PIL import Image
 from .imagem import Imagem
 
 class ImagemHSV(Imagem):

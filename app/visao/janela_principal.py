@@ -38,10 +38,6 @@ class JanelaPrincipal(tkinter.Tk):
 
         barra_menu.add_cascade(label="Arquivo", menu=menu_arquivo)
 
-        # Menu editar
-        menu_editar = tkinter.Menu(barra_menu, tearoff=0)
-        barra_menu.add_cascade(label="Editar", menu=menu_editar)
-
         # Menu visualizar
         menu_visualizar = tkinter.Menu(barra_menu, tearoff=0)
         menu_visualizar.add_command(label="Aumentar Zoom")
@@ -70,20 +66,36 @@ class JanelaPrincipal(tkinter.Tk):
         submenu_hsv = tkinter.Menu(menu_histograma, tearoff=0)
         submenu_hsv.add_command(
             label="Hue",
-            command=lambda: self.controlador.exibir_histograma_hsv_hue(self.adicionar_imagem)
+            command=lambda: self.controlador.exibir_histograma_hsv_hue(
+                self.adicionar_imagem, 
+                waiting=lambda: self.set_cursor("watch"),
+                ending=lambda: self.set_cursor("")
+            )
         )
         submenu_hsv.add_command(
             label="Saturation",
-            command=lambda: self.controlador.exibir_histograma_hsv_saturation(self.adicionar_imagem)
+            command=lambda: self.controlador.exibir_histograma_hsv_saturation(
+                self.adicionar_imagem, 
+                waiting=lambda: self.set_cursor("watch"),
+                ending=lambda: self.set_cursor("")
+            )
         )
         submenu_hsv.add_command(
             label="Value",
-            command=lambda: self.controlador.exibir_histograma_hsv_value(self.adicionar_imagem)
+            command=lambda: self.controlador.exibir_histograma_hsv_value(
+                self.adicionar_imagem, 
+                waiting=lambda: self.set_cursor("watch"),
+                ending=lambda: self.set_cursor("")
+            )
         )
 
         menu_histograma.add_command(
             label="Tons de cinza",
-            command=lambda: self.controlador.exibir_histograma_tons_cinza(self.adicionar_imagem)
+            command=lambda: self.controlador.exibir_histograma_tons_cinza(
+                self.adicionar_imagem, 
+                waiting=lambda: self.set_cursor("watch"),
+                ending=lambda: self.set_cursor("")
+            )
         )
         menu_histograma.add_cascade(label="HSV", menu=submenu_hsv)
         barra_menu.add_cascade(label="Histogramas", menu=menu_histograma)
@@ -124,6 +136,10 @@ class JanelaPrincipal(tkinter.Tk):
         """Shows the frame correspondent to the page_name"""
         frame = self.frames[page_name]
         frame.tkraise()
+
+    def set_cursor(self, state):
+        self.config(cursor=state)
+        self.update()
 
     def adicionar_imagem(self, image):
         """
