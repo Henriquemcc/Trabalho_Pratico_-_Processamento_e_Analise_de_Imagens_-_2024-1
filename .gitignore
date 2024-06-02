@@ -1,0 +1,8 @@
+
+*classifications.csv
+*dataset_converted
+*dataset
+*env
+*logs
+*__pycache__*
+*.ipynb_checkpoints/
