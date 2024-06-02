@@ -127,7 +127,9 @@ class Controlador:
         x, y = zip(*dado)
         fig, ax = plt.subplots()
         ax.bar(x, y, width=15.0)
-        return Controlador.__buffer_plot_and_get(fig)
+        imagem =  Controlador.__buffer_plot_and_get(fig)
+        plt.close(fig)
+        return imagem
 
     @staticmethod
     def __buffer_plot_and_get(fig):
