@@ -67,12 +67,28 @@ class JanelaPrincipal(tkinter.Tk):
         barra_menu.add_cascade(label="Conveter", menu=menu_converter)
 
         # Menu gerar
-        menu_gerar = tkinter.Menu(barra_menu, tearoff=0)
-        submenu_histograma = tkinter.Menu(menu_gerar, tearoff=0)
-        submenu_histograma.add_command(label="Tons de cinza")
-        submenu_histograma.add_command(label="Cor")
-        menu_gerar.add_cascade(label="Histograma", menu=submenu_histograma)
-        barra_menu.add_cascade(label="Gerar", menu=menu_gerar)
+        menu_histograma = tkinter.Menu(barra_menu, tearoff=0)
+
+        submenu_hsv = tkinter.Menu(menu_histograma, tearoff=0)
+        submenu_hsv.add_command(
+            label="Hue",
+            command=lambda: self.controlador.exibir_histograma_hsv_hue(self.adicionar_imagem)
+        )
+        submenu_hsv.add_command(
+            label="Saturation",
+            command=lambda: self.controlador.exibir_histograma_hsv_saturation(self.adicionar_imagem)
+        )
+        submenu_hsv.add_command(
+            label="Value",
+            command=lambda: self.controlador.exibir_histograma_hsv_value(self.adicionar_imagem)
+        )
+
+        menu_histograma.add_command(
+            label="Tons de cinza",
+            command=lambda: self.controlador.exibir_histograma_tons_cinza(self.adicionar_imagem)
+        )
+        menu_histograma.add_cascade(label="Histograma", menu=submenu_hsv)
+        barra_menu.add_cascade(label="Gerar", menu=menu_histograma)
 
         # Menu caracterizar imagem
         menu_caracterizar_imagem = tkinter.Menu(barra_menu, tearoff=0)

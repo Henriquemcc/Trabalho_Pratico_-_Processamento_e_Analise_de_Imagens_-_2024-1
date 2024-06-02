@@ -1,7 +1,8 @@
 from tkinter import filedialog
 
-import PIL.Image
-import PIL.ImageTk
+from io import BytesIO
+from PIL import Image
+import matplotlib.pyplot as plt
 
 from modelo.imagem_rgb import ImagemRGB
 from modelo.imagem_tons_cinza import ImagemTonsCinza
@@ -27,8 +28,16 @@ class Controlador:
         self.update_tons_cinza = False
         self.imagem_tons_cinza = None
 
+        self.update_histograma_cinza = False
+        self.histograma_cinza = None
+
         self.update_hsv = False
         self.imagem_hsv = None
+
+        self.update_histograma_hsv = False
+        self.histograma_hsv = None
+        self.update_histograma_hsv_2d = False
+        self.histograma_hsv_2d = None
 
         self.photo_image = None
 
@@ -40,6 +49,7 @@ class Controlador:
         self.caminho = filedialog.askopenfilename(filetypes=self.tipos_arquivos)
         self.imagem_rgb = ImagemRGB.from_file(self.caminho)
         self.update_tons_cinza=self.update_hsv=True
+        self.update_histograma_cinza=self.update_histograma_hsv=self.update_histograma_hsv_2d=True
         f(self.imagem_rgb.to_image())
 
     def exibir_imagem_rgb(self,f):
@@ -64,3 +74,47 @@ class Controlador:
             self.imagem_hsv = ImagemHSV.from_image(self.imagem_rgb)
             self.update_hsv=False
         f(self.imagem_hsv.to_image())
+
+    def exibir_histograma_tons_cinza(self, f) -> None:
+        if (self.update_histograma_cinza):
+            self.histograma_cinza = self.imagem_tons_cinza.to_histograma()
+            self.update_histograma_cinza = False
+        plot = self.__extract_2d_bar(self.histograma_cinza)
+        f(plot)
+
+    def exibir_histograma_hsv_hue(self, f) -> None:
+        if (self.update_histograma_hsv):
+            self.histograma_hsv = self.imagem_hsv.to_histograma()
+            self.update_histograma_hsv = False
+        plot = self.__extract_2d_bar(self.histograma_hsv[0])
+        f(plot)
+
+    def exibir_histograma_hsv_saturation(self, f) -> None:
+        if (self.update_histograma_hsv):
+            self.histograma_hsv = self.imagem_hsv.to_histograma()
+            self.update_histograma_hsv = False
+        plot = self.__extract_2d_bar(self.histograma_hsv[1])
+        f(plot)
+
+    def exibir_histograma_hsv_value(self, f) -> None:
+        if (self.update_histograma_hsv):
+            self.histograma_hsv = self.imagem_hsv.to_histograma()
+            self.update_histograma_hsv = False
+        plot = self.__extract_2d_bar(self.histograma_hsv[2])
+        f(plot)
+
+    @staticmethod
+    def __extract_2d_bar(dict_histogram):
+        dado = list(dict_histogram.items())
+        dado.sort(key=lambda x: x[0])
+        x, y = zip(*dado)
+        fig, ax = plt.subplots()
+        ax.bar(x, y, width=15.0)
+        return Controlador.__buffer_plot_and_get(fig)
+
+    @staticmethod
+    def __buffer_plot_and_get(fig):
+        buf = BytesIO()
+        fig.savefig(buf)
+        buf.seek(0)
+        return Image.open(buf)

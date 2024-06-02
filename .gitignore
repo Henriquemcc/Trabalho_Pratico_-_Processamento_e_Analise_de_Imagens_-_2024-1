@@ -1,5 +1,7 @@
-classifications.csv
-dataset_converted
-dataset
-venv
-logs
+
+*classifications.csv
+*dataset_converted
+*dataset
+*env
+*logs
+*__pycache__*
