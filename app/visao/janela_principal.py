@@ -98,6 +98,14 @@ class JanelaPrincipal(tkinter.Tk):
             )
         )
         menu_histograma.add_cascade(label="HSV", menu=submenu_hsv)
+        menu_histograma.add_command(
+            label="HSV_2D",
+            command=lambda: self.controlador.exibir_histograma_hsv_2d(
+                self.adicionar_imagem, 
+                waiting=lambda: self.set_cursor("watch"),
+                ending=lambda: self.set_cursor("")
+            )
+        )
         barra_menu.add_cascade(label="Histogramas", menu=menu_histograma)
 
         # Menu caracterizar imagem

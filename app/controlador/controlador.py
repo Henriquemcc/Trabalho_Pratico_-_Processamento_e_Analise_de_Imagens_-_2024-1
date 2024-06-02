@@ -2,6 +2,7 @@ from tkinter import filedialog
 
 from io import BytesIO
 from PIL import Image
+import numpy as np
 import matplotlib.pyplot as plt
 
 from modelo.imagem_rgb import ImagemRGB
@@ -96,6 +97,13 @@ class Controlador:
             ending()
             self.update_histograma_hsv = False
 
+    def __gerar_histograma_hsv_2d(self, waiting=lambda: None, ending=lambda: None):
+        if self.update_histograma_hsv_2d:
+            waiting()
+            self.histograma_hsv_2d = self.imagem_hsv.to_histograma_2d()
+            ending()
+            self.update_histograma_hsv_2d = False
+
     def exibir_histograma_tons_cinza(self, f, waiting=lambda: None, ending=lambda: None) -> None:
         self.__gerar_imagem_cinza()
         self.__gerar_histograma_cinza(waiting=waiting, ending=ending)
@@ -120,13 +128,44 @@ class Controlador:
         plot = self.__extract_2d_bar(self.histograma_hsv[2])
         f(plot)
 
+    def exibir_histograma_hsv_2d(self, f, waiting=lambda: None, ending=lambda: None) -> None:
+        self.__gerar_imagem_hsv()
+        self.__gerar_histograma_hsv_2d(waiting=waiting, ending=ending)
+        plot = self.__extract_3d_bar(self.histograma_hsv_2d)
+        f(plot)
+
     @staticmethod
-    def __extract_2d_bar(dict_histogram):
+    def __extract_2d_bar(dict_histogram, n_bin=16):
         dado = list(dict_histogram.items())
         dado.sort(key=lambda x: x[0])
         x, y = zip(*dado)
         fig, ax = plt.subplots()
-        ax.bar(x, y, width=15.0)
+        ax.bar(x, y, width=(256 // n_bin)-1)
+        imagem =  Controlador.__buffer_plot_and_get(fig)
+        plt.close(fig)
+        return imagem
+
+    @staticmethod
+    def __extract_3d_bar(dict_histogram, n_bin=(16, 128)):
+        dados = list(dict_histogram.items())        # p2
+
+        dados.sort(key=lambda x: x[0][1])
+        dados.sort(key=lambda x: x[0][0])
+
+        fig = plt.figure()
+        ax = fig.add_subplot(projection='3d')
+
+        _x = [x[0][0] for x in dados[::n_bin[1]]]
+        _y = [y[0][1] for y in dados[:n_bin[1]]]
+        _xx, _yy = np.meshgrid(_x, _y)
+        x, y = _xx.ravel(), _yy.ravel()
+
+        top = [z[1] for z in dados]
+        bottom = np.zeros_like(top)
+        width = (256//n_bin[0])-1
+        depth = (256//n_bin[1])-1
+
+        ax.bar3d(x, y, bottom, width, depth, top, shade=True)
         imagem =  Controlador.__buffer_plot_and_get(fig)
         plt.close(fig)
         return imagem
