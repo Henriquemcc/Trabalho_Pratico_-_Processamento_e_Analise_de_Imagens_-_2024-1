@@ -22,6 +22,11 @@ class ImagemHSV(Imagem):
 
     @staticmethod
     def from_image(imagem):
+        """
+        Cria uma ImagemHSV a partir de uma imagem.
+        :param imagem: Imagem a partir da qual será criada a imagem HSV.
+        :return: Instância da classe ImagemHSV criado a partir da imagem.
+        """
         return ImagemHSV(numpy.array(imagem.to_image().convert('HSV')))
 
     def to_histograma(self, n_bin=(16, 16, 16)):
