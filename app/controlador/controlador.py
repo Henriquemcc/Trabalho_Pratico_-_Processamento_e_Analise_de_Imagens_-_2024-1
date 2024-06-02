@@ -114,8 +114,8 @@ class Controlador:
         f(plot)
 
     def exibir_histograma_hsv_value(self, f, waiting=lambda: None, ending=lambda: None) -> None:
-        self.__gerar_imagem_hsv(waiting=waiting, ending=ending)
-        self.__gerar_histograma_hsv()
+        self.__gerar_imagem_hsv()
+        self.__gerar_histograma_hsv(waiting=waiting, ending=ending)
         plot = self.__extract_2d_bar(self.histograma_hsv[2])
         f(plot)
 
