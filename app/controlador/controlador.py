@@ -8,6 +8,7 @@ from modelo.imagem_rgb import ImagemRGB
 from modelo.imagem_tons_cinza import ImagemTonsCinza
 from modelo.imagem_hsv import ImagemHSV
 
+
 class Controlador:
     """
     Controlador.
@@ -48,21 +49,21 @@ class Controlador:
         """
         self.caminho = filedialog.askopenfilename(filetypes=self.tipos_arquivos)
         self.imagem_rgb = ImagemRGB.from_file(self.caminho)
-        self.update_tons_cinza=self.update_hsv=True
-        self.update_histograma_cinza=self.update_histograma_hsv=self.update_histograma_hsv_2d=True
+        self.update_tons_cinza = self.update_hsv = True
+        self.update_histograma_cinza = self.update_histograma_hsv = self.update_histograma_hsv_2d = True
         f(self.imagem_rgb.to_image())
 
     def __gerar_imagem_cinza(self):
-        if(self.update_tons_cinza):
+        if self.update_tons_cinza:
             self.imagem_tons_cinza = ImagemTonsCinza.from_image(self.imagem_rgb)
-            self.update_tons_cinza=False
+            self.update_tons_cinza = False
 
     def __gerar_imagem_hsv(self):
-        if(self.update_hsv):
+        if self.update_hsv:
             self.imagem_hsv = ImagemHSV.from_image(self.imagem_rgb)
-            self.update_hsv=False
+            self.update_hsv = False
 
-    def exibir_imagem_rgb(self,f):
+    def exibir_imagem_rgb(self, f):
         f(self.imagem_rgb.to_image())
 
     def exibir_imagem_tons_cinza(self, f) -> None:
@@ -82,14 +83,14 @@ class Controlador:
         f(self.imagem_hsv.to_image())
 
     def __gerar_histograma_cinza(self, waiting=lambda: None, ending=lambda: None):
-        if (self.update_histograma_cinza):
+        if self.update_histograma_cinza:
             waiting()
             self.histograma_cinza = self.imagem_tons_cinza.to_histograma()
             ending()
             self.update_histograma_cinza = False
 
     def __gerar_histograma_hsv(self, waiting=lambda: None, ending=lambda: None):
-        if (self.update_histograma_hsv):
+        if self.update_histograma_hsv:
             waiting()
             self.histograma_hsv = self.imagem_hsv.to_histograma()
             ending()

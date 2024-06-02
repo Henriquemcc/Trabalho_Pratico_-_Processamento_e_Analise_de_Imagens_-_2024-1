@@ -4,10 +4,12 @@ import numpy
 from .imagem import Imagem
 from PIL import Image
 
+
 class ImagemTonsCinza(Imagem):
     """
     Representa uma matriz de tons de cinza.
     """
+
     @staticmethod
     def from_file(file_path):
         """
