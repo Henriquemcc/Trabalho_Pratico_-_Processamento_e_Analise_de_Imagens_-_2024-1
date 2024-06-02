@@ -44,8 +44,6 @@ class JanelaPrincipal(tkinter.Tk):
 
         # Menu visualizar
         menu_visualizar = tkinter.Menu(barra_menu, tearoff=0)
-        menu_visualizar.add_command(label="Exibir cores")
-        menu_visualizar.add_command(label="Exibir tons de cinza")
         menu_visualizar.add_command(label="Aumentar Zoom")
         menu_visualizar.add_command(label="Diminuir Zoom")
         barra_menu.add_cascade(label="Visualizar", menu=menu_visualizar)
@@ -66,7 +64,7 @@ class JanelaPrincipal(tkinter.Tk):
         )
         barra_menu.add_cascade(label="Conveter", menu=menu_converter)
 
-        # Menu gerar
+        # Menu histogramas
         menu_histograma = tkinter.Menu(barra_menu, tearoff=0)
 
         submenu_hsv = tkinter.Menu(menu_histograma, tearoff=0)
