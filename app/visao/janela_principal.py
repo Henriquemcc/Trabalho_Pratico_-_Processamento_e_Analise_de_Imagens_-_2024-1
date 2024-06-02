@@ -53,7 +53,7 @@ class JanelaPrincipal(tkinter.Tk):
         # Menu converter
         menu_converter = tkinter.Menu(barra_menu, tearoff=0)
         menu_converter.add_command(
-            label="Tons de cinza",
+            label="RGB",
             command=lambda: self.controlador.exibir_imagem_rgb(self.adicionar_imagem)
         )
         menu_converter.add_command(
