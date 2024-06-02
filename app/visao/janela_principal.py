@@ -87,8 +87,8 @@ class JanelaPrincipal(tkinter.Tk):
             label="Tons de cinza",
             command=lambda: self.controlador.exibir_histograma_tons_cinza(self.adicionar_imagem)
         )
-        menu_histograma.add_cascade(label="Histograma", menu=submenu_hsv)
-        barra_menu.add_cascade(label="Gerar", menu=menu_histograma)
+        menu_histograma.add_cascade(label="HSV", menu=submenu_hsv)
+        barra_menu.add_cascade(label="Histogramas", menu=menu_histograma)
 
         # Menu caracterizar imagem
         menu_caracterizar_imagem = tkinter.Menu(barra_menu, tearoff=0)
