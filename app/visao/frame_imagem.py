@@ -2,6 +2,7 @@ import tkinter
 
 from PIL import ImageTk
 
+
 class FrameImagem(tkinter.Frame):
     """
     Frame utilizado na exibição de imagens.
