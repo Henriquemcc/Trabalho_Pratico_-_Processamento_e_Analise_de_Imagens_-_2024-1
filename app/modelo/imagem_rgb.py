@@ -1,9 +1,7 @@
-from PIL import Image
 import numpy
+from PIL import Image
 
 from .imagem import Imagem
-from .imagem_hsv import ImagemHSV
-from .imagem_tons_cinza import ImagemTonsCinza
 
 
 class ImagemRGB(Imagem):
