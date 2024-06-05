@@ -5,11 +5,11 @@
 # Instalando requisitos
 
 # %%
-#%pip install -r requirements.txt -q
-#%pip install pandas -q
-#%pip install scikit-learn -q
-#%pip install tensorflow -q
-#%pip install numpy -q
+# %pip install -r requirements.txt -q
+# %pip install pandas -q
+# %pip install scikit-learn -q
+# %pip install tensorflow -q
+# %pip install numpy -q
 
 # %% [markdown]
 # Importando requisitos
@@ -112,10 +112,10 @@ labels = list(set(data_frame.iloc[:, 4].values))
 labels
 
 # %%
-y = [[1 if label==lbl else 0 for lbl in labels] for label in y]
+#y = [[1 if label==lbl else 0 for lbl in labels] for label in y]
 
 # %%
-y = numpy.array(y)
+#y = numpy.array(y)
 
 # %%
 y
@@ -130,7 +130,7 @@ y.shape
 # Separando o conjunto de treino e teste
 
 # %%
-x_train, x_test, y_train, y_test = sklearn.model_selection.train_test_split(x, y)
+x_train, x_test, y_train, y_test = sklearn.model_selection.train_test_split(x, y, test_size=0.2, train_size=0.8)
 
 # %%
 y_train
