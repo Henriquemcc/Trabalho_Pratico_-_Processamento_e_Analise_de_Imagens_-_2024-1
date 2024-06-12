@@ -18,10 +18,10 @@ class JanelaPrincipal(tkinter.Tk):
         # Controlador que instanciou a janela principal
         self.controlador = Controlador()
 
-        # Widget principal
+        # Definindo o título
         self.title("Trabalho Prático - Processamento e Análise de Imagens - 2024-1")
 
-        # Maximizando a janela
+        # Configurando o tamanho da janela
         screen_width = 500
         screen_height = 300
         self.geometry(f"{screen_width}x{screen_height}+0+0")
