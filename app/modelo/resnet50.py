@@ -1,4 +1,7 @@
+import PIL
+import numpy
 from tensorflow.keras.models import load_model
+from tensorflow.keras.applications.resnet50 import preprocess_input
 
 from modelo.classificador import Classificador
 
@@ -15,3 +18,11 @@ class Resnet50(Classificador):
         """
         super().__init__()
         self.modelo = load_model(model_path)
+
+    def pre_processar(self, image_path):
+        """
+        Realiza o préprocessamento da imagem.
+        :param image_path:
+        :return:
+        """
+        return preprocess_input(numpy.array(PIL.Image.open(image_path).convert('RGB').resize((224, 224))))
