@@ -101,11 +101,17 @@ class Controlador:
             self.update_hsv = False
 
     def exibir_imagem_rgb(self, f):
+        """
+        Exibe uma imagem RGB.
+        :param f: Função passada pela janela principal a ser executada por esta função com a imagem a ser exibida.
+        :return:
+        """
         f(self.imagem_rgb.to_image())
 
     def exibir_imagem_tons_cinza(self, f) -> None:
         """
-        Converte uma imagem RGB em uma imagem em tons de cinza.
+        Exibe uma imagem RGB em uma imagem em tons de cinza.
+        :param f: Função passada pela janela principal a ser executada por esta função com a imagem a ser exibida.
         :return:
         """
         self.__gerar_imagem_cinza()
@@ -113,7 +119,8 @@ class Controlador:
 
     def exibir_imagem_hsv(self, f) -> None:
         """
-        Converte uma imagem RGB em uma imagem em tons de cinza.
+        Exibe uma imagem RGB em uma imagem em tons de cinza.
+        :param f: Função passada pela janela principal a ser executada por esta função com a imagem a ser exibida.
         :return:
         """
         self.__gerar_imagem_hsv()
