@@ -17,11 +17,11 @@ class Classificador:
         """
         pass
 
-    def perdict(self, *args):
+    def perdict(self, *args, **kwargs):
         """
         Realiza uma predição utilizando o modelo.
         :param args: Argumentos a serem passados à classe 'predict' do modelo.
         :return: Valor da predição.
         """
-        return self.modelo.predict(*args)
+        return self.modelo.predict(*args, **kwargs)
 
