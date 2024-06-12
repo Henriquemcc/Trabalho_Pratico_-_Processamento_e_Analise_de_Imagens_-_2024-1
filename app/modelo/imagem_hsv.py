@@ -34,9 +34,9 @@ class ImagemHSV(Imagem):
         Gera um histograma da imagem HSV.
         """
         intervalo = [256 // bin_ for bin_ in n_bin]
-        histograma_hue = {x*intervalo[0] : 0 for x in range(n_bin[0])}
-        histograma_saturation = {x*intervalo[1] : 0 for x in range(n_bin[1])}
-        histograma_value = {x*intervalo[2] : 0 for x in range(n_bin[2])}
+        histograma_hue = {x * intervalo[0]: 0 for x in range(n_bin[0])}
+        histograma_saturation = {x * intervalo[1]: 0 for x in range(n_bin[1])}
+        histograma_value = {x * intervalo[2]: 0 for x in range(n_bin[2])}
         for linha in range(self.matriz.shape[0]):
             for coluna in range(self.matriz.shape[1]):
 
@@ -71,11 +71,11 @@ class ImagemHSV(Imagem):
         Gera um histograma 2D da imagem HSV.
         """
         intervalo = [256 // bin_ for bin_ in n_bin]
-        histograma_2d = {pair: 0 for pair in ((x*intervalo[0], y*intervalo[1]) for x in range(n_bin[0]) for y in range(n_bin[1]))}
+        histograma_2d = {pair: 0 for pair in
+                         ((x * intervalo[0], y * intervalo[1]) for x in range(n_bin[0]) for y in range(n_bin[1]))}
         print(histograma_2d)
         for linha in range(self.matriz.shape[0]):
             for coluna in range(self.matriz.shape[1]):
-
                 # Obtendo os valores de hue e value do pixel
                 hue, _, value = self.matriz[linha][coluna]
                 hue = (hue // intervalo[0]) * intervalo[0]

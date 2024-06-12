@@ -24,4 +24,3 @@ class Classificador:
         :return: Valor da predição.
         """
         return self.modelo.predict(*args, **kwargs)
-

@@ -1,14 +1,14 @@
+from io import BytesIO
 from tkinter import filedialog
 
-from io import BytesIO
-from PIL import Image
-import numpy as np
 import matplotlib.pyplot as plt
+import numpy as np
+from PIL import Image
 
+from modelo.imagem_hsv import ImagemHSV
 from modelo.imagem_rgb import ImagemRGB
 from modelo.imagem_tons_cinza import ImagemTonsCinza
-from modelo.imagem_hsv import ImagemHSV
-from modelo.svm import Svm
+from visao.janela_classificador import JanelaClassificador
 
 
 class Controlador:
@@ -24,13 +24,6 @@ class Controlador:
             ("Portable Network Graphics", ".png"),
             ("Joint Photographic Experts Group", ".jpeg"),
             ("Joint Photographic Experts Group", ".jpg"),
-            ("Todos os formatos", "*")
-        ]
-
-        # Tipos de arquivos de modelos
-        self.tipos_arquivos_modelos = [
-            ("Todos os formatos compatíveis", [".h5", ".hdf5"]),
-            ("Hierarchical Data Format", [".h5", ".hdf5"]),
             ("Todos os formatos", "*")
         ]
 
@@ -70,6 +63,12 @@ class Controlador:
         self.histograma_hsv_2d = None
 
         self.photo_image = None
+
+        # Janela SVM
+        self.janela_svm = None
+
+        # Janela ResNet
+        self.janela_resnet = None
 
     def abrir_arquivo_imagem(self, f) -> None:
         """
@@ -289,3 +288,19 @@ class Controlador:
         fig.savefig(buf)
         buf.seek(0)
         return Image.open(buf)
+
+    def exibir_classificador_svm(self):
+        """
+        Exibe o classificador SVM.
+        :return:
+        """
+        self.janela_svm = JanelaClassificador("Support Vector Machine (SVM)")
+        self.janela_svm.mainloop()
+
+    def exibir_classificador_resnet50(self):
+        """
+        Exibe o classificador ResNet50.
+        :return:
+        """
+        self.janela_resnet = JanelaClassificador("ResNet50")
+        self.janela_resnet.mainloop()
