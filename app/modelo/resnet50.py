@@ -21,8 +21,8 @@ class Resnet50(Classificador):
 
     def pre_processar(self, image_path):
         """
-        Realiza o préprocessamento da imagem.
-        :param image_path:
-        :return:
+        Realiza o pré-processamento da imagem.
+        :param image_path: Caminho da imagem a ser pré-processada.
+        :return: Imagem pré-processada.
         """
         return preprocess_input(numpy.array(PIL.Image.open(image_path).convert('RGB').resize((224, 224))))
