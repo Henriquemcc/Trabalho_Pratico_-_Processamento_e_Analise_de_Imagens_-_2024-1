@@ -22,7 +22,7 @@ class Classificador:
         """
         pass
 
-    def perdict(self, *args, **kwargs):
+    def predict(self, *args, **kwargs):
         """
         Realiza uma predição utilizando o modelo.
         :param args: Argumentos a serem passados à classe 'predict' do modelo.
