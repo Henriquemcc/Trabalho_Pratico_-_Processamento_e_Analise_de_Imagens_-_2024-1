@@ -1,6 +1,7 @@
 import tkinter
 
 from controlador.controlador_classificador import ControladorClassificador
+from modelo.classifier_types import ClassifierTypes
 
 
 class FrameClassificador(tkinter.Frame):
@@ -44,7 +45,8 @@ class FrameClassificador(tkinter.Frame):
             text="Classificar SVM",
             command=lambda: self.int_controller.classificar_svm(
                 self.parent_controller.controlador.imagem_rgb,
-                self.label_classificacao
+                self.label_classificacao,
+                classifier_type=ClassifierTypes(self.selected_radio_button_classificacao.get())
             )
         )
         self.botao_classificar_svm.pack(side="top", fill="x", pady=10)
@@ -55,7 +57,8 @@ class FrameClassificador(tkinter.Frame):
             text="Classificar ResNet50",
             command=lambda: self.int_controller.classificar_resnet(
                 self.parent_controller.controlador.imagem_rgb,
-                self.label_classificacao
+                self.label_classificacao,
+                classifier_type=ClassifierTypes(self.selected_radio_button_classificacao.get())
             )
         )
         self.botao_classificar_resnet.pack(side="top", fill="x", pady=10)
