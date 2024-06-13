@@ -1,6 +1,7 @@
 import tkinter
 
 from controlador.controlador import Controlador
+from .frame_classificador import FrameClassificador
 from .frame_principal import FramePrincipal
 from .frame_imagem import FrameImagem
 
@@ -116,16 +117,7 @@ class JanelaPrincipal(tkinter.Tk):
         barra_menu.add_cascade(label="Caracterizar", menu=menu_caracterizar_imagem)
 
         # Menu classificar
-        menu_classificar = tkinter.Menu(barra_menu, tearoff=0)
-        menu_classificar.add_command(
-            label="SVM",
-            command=lambda: self.controlador.exibir_classificador_svm(),
-        )
-        menu_classificar.add_command(
-            label="ResNet50",
-            command=lambda: self.controlador.exibir_classificador_resnet50(),
-        )
-        barra_menu.add_cascade(label="Classificar", menu=menu_classificar)
+        barra_menu.add_command(label="Classificar", command=lambda: self.show_frame("FrameClassificador"))
 
         self.config(menu=barra_menu)
 
@@ -137,7 +129,7 @@ class JanelaPrincipal(tkinter.Tk):
 
         # Controle de paginas
         self.frames = {}
-        for F in (FramePrincipal, FrameImagem):
+        for F in (FramePrincipal, FrameImagem, FrameClassificador):
             page_name = F.__name__
             frame = F(container, controller=self)
             self.frames[page_name] = frame

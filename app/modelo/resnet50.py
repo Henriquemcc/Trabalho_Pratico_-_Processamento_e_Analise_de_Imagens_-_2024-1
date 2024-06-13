@@ -1,18 +1,23 @@
 import numpy
 from tensorflow.keras.applications.resnet50 import preprocess_input
-
-from .classificador import Classificador
 from .imagem_hsv import ImagemHSV
 from .imagem_rgb import ImagemRGB
 from .imagem_tons_cinza import ImagemTonsCinza
+from tensorflow.keras.models import load_model
 
 
-class Resnet50(Classificador):
+class Resnet50:
     """
     Implementa um classificador ResNet50.
     """
 
-    def pre_processar(self, imagem: ImagemRGB):
+    def __init__(self):
+        """
+        Construtor da classe.
+        """
+        self.modelo = load_model("./inteligencia/resnet50.h5")
+
+    def __pre_processar(self, imagem: ImagemRGB):
         """
         Realiza o pré-processamento da imagem.
         :param imagem: Imagem a ser pré-processada.
@@ -26,3 +31,12 @@ class Resnet50(Classificador):
 
         # Redimensionando a imagem
         return preprocess_input(numpy.array(imagem.to_image().resize((224, 224))))
+
+    def predict(self, imagem: ImagemRGB):
+        """
+        Realiza a predição da imagem.
+        :param imagem: Imagem a ser classificada.
+        :return: Classe da imagem.
+        """
+        imagem = self.__pre_processar(imagem)
+        return self.modelo.predict(numpy.array([imagem]))[0]
