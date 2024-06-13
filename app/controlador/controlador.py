@@ -26,52 +26,46 @@ class Controlador:
             ("Todos os formatos", "*")
         ]
 
-        # Caminho da imagem RGB
-        self.caminho = None
 
-        # Imagem RGB
+        self.caminho = None
         self.imagem_rgb = None
 
+        self.imagem_tons_cinza = None
         self.update_tons_cinza = False
 
-        # Imagem em tons de cinza
-        self.imagem_tons_cinza = None
-
-        # Se deve atualizar o histograma de tons de cinza
-        self.update_histograma_cinza = False
-
-        # Histograma de tons de cinza
-        self.histograma_cinza = None
-
-        # Se deve atualizar a imagem HSV
+        self.imagem_hsv = None
         self.update_hsv = False
 
-        # Imagem HSV
-        self.imagem_hsv = None
+        self.histograma_cinza = None
+        self.update_histograma_cinza = False
 
-        # Se deve atualizar o histograma HSV
+        self.histograma_hsv = None
         self.update_histograma_hsv = False
 
-        # Histograma HSV
-        self.histograma_hsv = None
-
-        # Se deve atualizar o Histograma HSV 2D
+        self.histograma_hsv_2d = None
         self.update_histograma_hsv_2d = False
 
-        # Histograma HSV 2D
-        self.histograma_hsv_2d = None
+        self.last_shown = None
+        self.zoom = None
+        self.max_zoom = None
 
-        self.photo_image = None
+    def set_zoom(self, zoom, f):
+        if (
+                zoom[0][0] < self.max_zoom[0][0] or
+                zoom[0][1] > self.max_zoom[0][1] or
+                zoom[1][0] < self.max_zoom[1][0] or
+                zoom[1][1] > self.max_zoom[1][1]
+        ):
+            raise Exception("Zoom out of bounds of image")
 
-        # Janela SVM
-        self.janela_svm = None
+        self.zoom = zoom
 
-        # Janela ResNet
-        self.janela_resnet = None
-
-        # Controladores dos modelos
-        self.controlador_resnet = None
-        self.controlador_svm = None
+        if self.last_shown == 'rgb':
+            f(self.imagem_rgb.to_image(zoom=self.zoom))
+        elif self.last_shown == 'cinza':
+            f(self.imagem_tons_cinza.to_image(zoom=self.zoom))
+        elif self.last_shown == 'hsv':
+            f(self.imagem_hsv.to_image(zoom=self.zoom))
 
     def abrir_arquivo_imagem(self, f) -> None:
         """
@@ -80,9 +74,11 @@ class Controlador:
         """
         self.caminho = filedialog.askopenfilename(filetypes=self.tipos_arquivos_imagem)
         self.imagem_rgb = ImagemRGB.from_file(self.caminho)
+        self.last_shown = 'rgb'
+        self.zoom = self.max_zoom = [[0, self.imagem_rgb.matriz.shape[0]], [0, self.imagem_rgb.matriz.shape[1]]]
         self.update_tons_cinza = self.update_hsv = True
         self.update_histograma_cinza = self.update_histograma_hsv = self.update_histograma_hsv_2d = True
-        f(self.imagem_rgb.to_image())
+        f(self.imagem_rgb.to_image(zoom=self.zoom))
 
     def __gerar_imagem_cinza(self):
         """
@@ -108,7 +104,8 @@ class Controlador:
         :param f: Função passada pela janela principal a ser executada por esta função com a imagem a ser exibida.
         :return:
         """
-        f(self.imagem_rgb.to_image())
+        self.last_shown = 'rgb'
+        f(self.imagem_rgb.to_image(zoom=self.zoom))
 
     def exibir_imagem_tons_cinza(self, f) -> None:
         """
@@ -116,8 +113,9 @@ class Controlador:
         :param f: Função passada pela janela principal a ser executada por esta função com a imagem a ser exibida.
         :return:
         """
+        self.last_shown = 'cinza'
         self.__gerar_imagem_cinza()
-        f(self.imagem_tons_cinza.to_image())
+        f(self.imagem_tons_cinza.to_image(zoom=self.zoom))
 
     def exibir_imagem_hsv(self, f) -> None:
         """
@@ -125,8 +123,9 @@ class Controlador:
         :param f: Função passada pela janela principal a ser executada por esta função com a imagem a ser exibida.
         :return:
         """
+        self.last_shown = 'hsv'
         self.__gerar_imagem_hsv()
-        f(self.imagem_hsv.to_image())
+        f(self.imagem_hsv.to_image(zoom=self.zoom))
 
     def __gerar_histograma_cinza(self, waiting=lambda: None, ending=lambda: None):
         """

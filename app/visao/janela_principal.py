@@ -42,8 +42,14 @@ class JanelaPrincipal(tkinter.Tk):
 
         # Menu visualizar
         menu_visualizar = tkinter.Menu(barra_menu, tearoff=0)
-        menu_visualizar.add_command(label="Aumentar Zoom")
-        menu_visualizar.add_command(label="Diminuir Zoom")
+        menu_visualizar.add_command(
+            label="Aumentar Zoom",
+            command=lambda: self.controlador.set_zoom([[25, 75], [25, 50]], self.adicionar_imagem)
+        )
+        menu_visualizar.add_command(
+            label="Remover Zoom",
+            command=lambda: self.controlador.set_zoom(self.controlador.max_zoom, self.adicionar_imagem)
+        )
         barra_menu.add_cascade(label="Visualizar", menu=menu_visualizar)
 
         # Menu converter
