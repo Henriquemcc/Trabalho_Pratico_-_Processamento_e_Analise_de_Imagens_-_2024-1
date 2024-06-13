@@ -4,6 +4,7 @@ from controlador.controlador import Controlador
 from .frame_classificador import FrameClassificador
 from .frame_principal import FramePrincipal
 from .frame_imagem import FrameImagem
+from .janela_zoom import JanelaZoom
 
 
 class JanelaPrincipal(tkinter.Tk):
@@ -43,12 +44,16 @@ class JanelaPrincipal(tkinter.Tk):
         # Menu visualizar
         menu_visualizar = tkinter.Menu(barra_menu, tearoff=0)
         menu_visualizar.add_command(
-            label="Aumentar Zoom",
+            label="Aumentar Zoom (Simples)",
             command=lambda: self.controlador.set_zoom(
                 [[self.controlador.zoom[0][0]+10, self.controlador.zoom[0][1]-10],
                 [self.controlador.zoom[1][0]+10, self.controlador.zoom[1][1]-10]],
                 self.adicionar_imagem
             )
+        )
+        menu_visualizar.add_command(
+            label="Aumentar Zoom (Avançado)",
+            command=lambda: JanelaZoom(self.controlador, self.adicionar_imagem)
         )
         menu_visualizar.add_command(
             label="Remover Zoom",
