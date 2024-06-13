@@ -4,6 +4,7 @@ from controlador.controlador import Controlador
 from visao.frame_principal import FramePrincipal
 from visao.frame_imagem import FrameImagem
 
+
 class JanelaPrincipal(tkinter.Tk):
     """
     Janela principal
@@ -18,10 +19,10 @@ class JanelaPrincipal(tkinter.Tk):
         # Controlador que instanciou a janela principal
         self.controlador = Controlador()
 
-        # Widget principal
+        # Definindo o título
         self.title("Trabalho Prático - Processamento e Análise de Imagens - 2024-1")
 
-        # Maximizando a janela
+        # Configurando o tamanho da janela
         screen_width = 500
         screen_height = 300
         self.geometry(f"{screen_width}x{screen_height}+0+0")
@@ -67,7 +68,7 @@ class JanelaPrincipal(tkinter.Tk):
         submenu_hsv.add_command(
             label="Hue",
             command=lambda: self.controlador.exibir_histograma_hsv_hue(
-                self.adicionar_imagem, 
+                self.adicionar_imagem,
                 waiting=lambda: self.set_cursor("watch"),
                 ending=lambda: self.set_cursor("")
             )
@@ -75,7 +76,7 @@ class JanelaPrincipal(tkinter.Tk):
         submenu_hsv.add_command(
             label="Saturation",
             command=lambda: self.controlador.exibir_histograma_hsv_saturation(
-                self.adicionar_imagem, 
+                self.adicionar_imagem,
                 waiting=lambda: self.set_cursor("watch"),
                 ending=lambda: self.set_cursor("")
             )
@@ -83,7 +84,7 @@ class JanelaPrincipal(tkinter.Tk):
         submenu_hsv.add_command(
             label="Value",
             command=lambda: self.controlador.exibir_histograma_hsv_value(
-                self.adicionar_imagem, 
+                self.adicionar_imagem,
                 waiting=lambda: self.set_cursor("watch"),
                 ending=lambda: self.set_cursor("")
             )
@@ -92,7 +93,7 @@ class JanelaPrincipal(tkinter.Tk):
         menu_histograma.add_command(
             label="Tons de cinza",
             command=lambda: self.controlador.exibir_histograma_tons_cinza(
-                self.adicionar_imagem, 
+                self.adicionar_imagem,
                 waiting=lambda: self.set_cursor("watch"),
                 ending=lambda: self.set_cursor("")
             )
@@ -101,7 +102,7 @@ class JanelaPrincipal(tkinter.Tk):
         menu_histograma.add_command(
             label="HSV_2D",
             command=lambda: self.controlador.exibir_histograma_hsv_2d(
-                self.adicionar_imagem, 
+                self.adicionar_imagem,
                 waiting=lambda: self.set_cursor("watch"),
                 ending=lambda: self.set_cursor("")
             )
@@ -116,8 +117,14 @@ class JanelaPrincipal(tkinter.Tk):
 
         # Menu classificar
         menu_classificar = tkinter.Menu(barra_menu, tearoff=0)
-        menu_classificar.add_command(label="SVM")
-        menu_classificar.add_command(label="ResNet50")
+        menu_classificar.add_command(
+            label="SVM",
+            command=lambda: self.controlador.exibir_classificador_svm(),
+        )
+        menu_classificar.add_command(
+            label="ResNet50",
+            command=lambda: self.controlador.exibir_classificador_resnet50(),
+        )
         barra_menu.add_cascade(label="Classificar", menu=menu_classificar)
 
         self.config(menu=barra_menu)
@@ -146,6 +153,11 @@ class JanelaPrincipal(tkinter.Tk):
         frame.tkraise()
 
     def set_cursor(self, state):
+        """
+        Altera o cursor do mouse
+        :param state: Novo estado do cursor do mouse.
+        :return:
+        """
         self.config(cursor=state)
         self.update()
 
