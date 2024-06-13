@@ -1,8 +1,10 @@
 import tkinter
 
 from controlador.controlador import Controlador
-from visao.frame_principal import FramePrincipal
-from visao.frame_imagem import FrameImagem
+from .frame_classificador import FrameClassificador
+from .frame_principal import FramePrincipal
+from .frame_imagem import FrameImagem
+
 
 class JanelaPrincipal(tkinter.Tk):
     """
@@ -18,10 +20,10 @@ class JanelaPrincipal(tkinter.Tk):
         # Controlador que instanciou a janela principal
         self.controlador = Controlador()
 
-        # Widget principal
+        # Definindo o título
         self.title("Trabalho Prático - Processamento e Análise de Imagens - 2024-1")
 
-        # Maximizando a janela
+        # Configurando o tamanho da janela
         screen_width = 500
         screen_height = 300
         self.geometry(f"{screen_width}x{screen_height}+0+0")
@@ -67,7 +69,7 @@ class JanelaPrincipal(tkinter.Tk):
         submenu_hsv.add_command(
             label="Hue",
             command=lambda: self.controlador.exibir_histograma_hsv_hue(
-                self.adicionar_imagem, 
+                self.adicionar_imagem,
                 waiting=lambda: self.set_cursor("watch"),
                 ending=lambda: self.set_cursor("")
             )
@@ -75,7 +77,7 @@ class JanelaPrincipal(tkinter.Tk):
         submenu_hsv.add_command(
             label="Saturation",
             command=lambda: self.controlador.exibir_histograma_hsv_saturation(
-                self.adicionar_imagem, 
+                self.adicionar_imagem,
                 waiting=lambda: self.set_cursor("watch"),
                 ending=lambda: self.set_cursor("")
             )
@@ -83,7 +85,7 @@ class JanelaPrincipal(tkinter.Tk):
         submenu_hsv.add_command(
             label="Value",
             command=lambda: self.controlador.exibir_histograma_hsv_value(
-                self.adicionar_imagem, 
+                self.adicionar_imagem,
                 waiting=lambda: self.set_cursor("watch"),
                 ending=lambda: self.set_cursor("")
             )
@@ -92,12 +94,20 @@ class JanelaPrincipal(tkinter.Tk):
         menu_histograma.add_command(
             label="Tons de cinza",
             command=lambda: self.controlador.exibir_histograma_tons_cinza(
-                self.adicionar_imagem, 
+                self.adicionar_imagem,
                 waiting=lambda: self.set_cursor("watch"),
                 ending=lambda: self.set_cursor("")
             )
         )
         menu_histograma.add_cascade(label="HSV", menu=submenu_hsv)
+        menu_histograma.add_command(
+            label="HSV_2D",
+            command=lambda: self.controlador.exibir_histograma_hsv_2d(
+                self.adicionar_imagem,
+                waiting=lambda: self.set_cursor("watch"),
+                ending=lambda: self.set_cursor("")
+            )
+        )
         barra_menu.add_cascade(label="Histogramas", menu=menu_histograma)
 
         # Menu caracterizar imagem
@@ -107,10 +117,7 @@ class JanelaPrincipal(tkinter.Tk):
         barra_menu.add_cascade(label="Caracterizar", menu=menu_caracterizar_imagem)
 
         # Menu classificar
-        menu_classificar = tkinter.Menu(barra_menu, tearoff=0)
-        menu_classificar.add_command(label="SVM")
-        menu_classificar.add_command(label="ResNet50")
-        barra_menu.add_cascade(label="Classificar", menu=menu_classificar)
+        barra_menu.add_command(label="Classificar", command=lambda: self.show_frame("FrameClassificador"))
 
         self.config(menu=barra_menu)
 
@@ -122,7 +129,7 @@ class JanelaPrincipal(tkinter.Tk):
 
         # Controle de paginas
         self.frames = {}
-        for F in (FramePrincipal, FrameImagem):
+        for F in (FramePrincipal, FrameImagem, FrameClassificador):
             page_name = F.__name__
             frame = F(container, controller=self)
             self.frames[page_name] = frame
@@ -138,6 +145,11 @@ class JanelaPrincipal(tkinter.Tk):
         frame.tkraise()
 
     def set_cursor(self, state):
+        """
+        Altera o cursor do mouse
+        :param state: Novo estado do cursor do mouse.
+        :return:
+        """
         self.config(cursor=state)
         self.update()
 

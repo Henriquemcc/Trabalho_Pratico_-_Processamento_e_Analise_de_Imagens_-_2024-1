@@ -23,6 +23,11 @@ class ImagemTonsCinza(Imagem):
 
     @staticmethod
     def from_image(imagem):
+        """
+        Cria uma ImagemTonsCinza a partir de uma imagem.
+        :param imagem: Imagem a partir da qual será criada a imagem em tons de cinza.
+        :return: Instância da classe ImagemTonsCinza criado a partir da imagem.
+        """
         return ImagemTonsCinza(numpy.array(imagem.to_image().convert('L')))
 
     def to_histograma(self, n_bin=16):
