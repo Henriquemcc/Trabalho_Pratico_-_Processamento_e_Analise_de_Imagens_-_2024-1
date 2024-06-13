@@ -54,7 +54,9 @@ class Controlador:
                 zoom[0][0] < self.max_zoom[0][0] or
                 zoom[0][1] > self.max_zoom[0][1] or
                 zoom[1][0] < self.max_zoom[1][0] or
-                zoom[1][1] > self.max_zoom[1][1]
+                zoom[1][1] > self.max_zoom[1][1] or
+                zoom[0][0] >= zoom[0][1] or
+                zoom[1][0] >= zoom[1][1]
         ):
             raise Exception("Zoom out of bounds of image")
 
