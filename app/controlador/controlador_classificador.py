@@ -1,6 +1,7 @@
 import enum
 from tkinter import filedialog
 
+import numpy
 from tensorflow.keras.models import load_model
 
 from modelo.imagem_rgb import ImagemRGB
@@ -73,7 +74,7 @@ class ControladorClassificador:
         :return:
         """
         imagem_preprocessada = self.modelo.pre_processar(self.imagem)
-        resultado = self.modelo.perdict(imagem_preprocessada)
+        resultado = self.modelo.predict(numpy.array([imagem_preprocessada]))
         print(resultado)
 
 

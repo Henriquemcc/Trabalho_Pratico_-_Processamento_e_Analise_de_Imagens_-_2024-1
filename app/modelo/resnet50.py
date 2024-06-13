@@ -1,10 +1,7 @@
-import PIL
 import numpy
-from tensorflow.keras.models import load_model
 from tensorflow.keras.applications.resnet50 import preprocess_input
 
 from .classificador import Classificador
-from .imagem import Imagem
 from .imagem_hsv import ImagemHSV
 from .imagem_rgb import ImagemRGB
 from .imagem_tons_cinza import ImagemTonsCinza
@@ -28,4 +25,4 @@ class Resnet50(Classificador):
             raise "Imagem em HSV não é suportada."
 
         # Redimensionando a imagem
-        return preprocess_input(imagem.to_image().resize((224, 224)))
+        return preprocess_input(numpy.array(imagem.to_image().resize((224, 224))))
