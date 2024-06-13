@@ -8,7 +8,7 @@ class JanelaClassificador(tkinter.Tk):
     Janela para executar o classificador na imagem atual.
     """
 
-    def __init__(self, nome_classificador: str, *args, **kwargs):
+    def __init__(self, controlador, titulo, *args, **kwargs):
         """
         Constrói uma nova instância da JanelaSvm.
         :param nome_classificador: Nome do classificador.
@@ -19,11 +19,11 @@ class JanelaClassificador(tkinter.Tk):
         # Inicializando o pai
         tkinter.Tk.__init__(self, *args, **kwargs)
 
-        # Criando um controlador
-        self.controlador_classificador = ControladorClassificador()
+        # Controlador do classificador
+        self.controlador = controlador
 
         # Definindo o título
-        self.title(nome_classificador)
+        self.title("Classificação")
 
         # Configurando o tamanho da janela
         screen_width = 500
@@ -31,14 +31,14 @@ class JanelaClassificador(tkinter.Tk):
         self.geometry(f"{screen_width}x{screen_height}+0+0")
 
         # Título
-        titulo = tkinter.Label(self, text=nome_classificador)
+        titulo = tkinter.Label(self, text="Classificação")
         titulo.pack(side="top", fill="x", pady=10)
 
         # Abrir modelo
         botao_carregar_modelo = tkinter.Button(
             self,
             text="Carregar modelo",
-            command=lambda: self.controlador_classificador.abrir_modelo()
+            command=lambda: self.controlador.abrir_modelo()
         )
         botao_carregar_modelo.pack(side="top", fill="x", pady=10)
 
@@ -60,5 +60,9 @@ class JanelaClassificador(tkinter.Tk):
         radio_button_multiclasse.pack(side="top", fill="x", pady=10)
 
         # Classificar
-        botao_classificar = tkinter.Button(self, text="Classificar")
+        botao_classificar = tkinter.Button(
+            self,
+            text="Classificar",
+            command=lambda: self.controlador.classificar()
+        )
         botao_classificar.pack(side="top", fill="x", pady=10)

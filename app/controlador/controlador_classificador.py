@@ -1,6 +1,19 @@
+import enum
 from tkinter import filedialog
 
 from tensorflow.keras.models import load_model
+
+from modelo.imagem_rgb import ImagemRGB
+from modelo.resnet50 import Resnet50
+from modelo.svm import Svm
+
+
+class TipoClassificacao(enum.Enum):
+    """
+    Enumeração dos tipos de classificação.
+    """
+    BINARIO = 1
+    MULTICLASSE = 2
 
 
 class ControladorClassificador:
@@ -8,9 +21,10 @@ class ControladorClassificador:
     Controlador responsável pelo modelo.
     """
 
-    def __init__(self):
+    def __init__(self, imagem: ImagemRGB):
         """
         Constrói uma nova instância de ControladorModelo
+        :param parent_controller: Controlador pai.
         """
 
         # Tipos de arquivos de modelos
@@ -19,6 +33,9 @@ class ControladorClassificador:
             ("Hierarchical Data Format", [".h5", ".hdf5"]),
             ("Todos os formatos", "*")
         ]
+
+        # Imagem a ser classificada
+        self.imagem = imagem
 
         # Tipo de classificacao
         self.__tipo_classificacao = None
@@ -48,5 +65,41 @@ class ControladorClassificador:
         Abre um modelo a partir de um arquivo.
         :return:
         """
+        pass
+
+    def classificar(self):
+        """
+        Realiza a classificação da imagem.
+        :return:
+        """
+        imagem_preprocessada = self.modelo.pre_processar(self.imagem)
+        resultado = self.modelo.perdict(imagem_preprocessada)
+        print(resultado)
+
+
+class ControladorSvm(ControladorClassificador):
+    """
+    Controlador responsável pelo modelo SVM.
+    """
+
+    def abrir_modelo(self):
+        """
+        Abre um modelo a partir de um arquivo.
+        :return:
+        """
         caminho = filedialog.askopenfilename(filetypes=self.tipos_arquivos_modelos)
-        self.modelo = load_model(caminho)
+        self.modelo = Svm(load_model(caminho))
+
+
+class ControladorResnet(ControladorClassificador):
+    """
+    Controlador responsável pelo modelo Resnet.
+    """
+
+    def abrir_modelo(self):
+        """
+        Abre um modelo a partir de um arquivo.
+        :return:
+        """
+        caminho = filedialog.askopenfilename(filetypes=self.tipos_arquivos_modelos)
+        self.modelo = Resnet50(load_model(caminho))

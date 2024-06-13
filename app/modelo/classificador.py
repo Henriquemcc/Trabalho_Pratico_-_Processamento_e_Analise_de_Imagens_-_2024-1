@@ -1,18 +1,23 @@
+from modelo.imagem import Imagem
+from modelo.imagem_rgb import ImagemRGB
+
+
 class Classificador:
     """
     Super classe de Resnet50 e Svm.
     """
 
-    def __init__(self):
+    def __init__(self, modelo):
         """
         Constrói uma nova instância da classe Classificador.
+        :param modelo: Modelo a ser utilizado.
         """
-        self.modelo = None
+        self.modelo = modelo
 
-    def pre_processar(self, image_path):
+    def pre_processar(self, imagem: Imagem):
         """
         Realiza o pré-processamento da imagem a ser utilizada para treinar o ser predita pelo modelo.
-        :param image_path: Caminho da imagem a ser pré-processada.
+        :param imagem: ImagemRGB a ser pré-processada.
         :return: Imagem pré-processada.
         """
         pass

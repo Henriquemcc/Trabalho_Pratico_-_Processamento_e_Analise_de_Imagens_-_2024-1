@@ -4,7 +4,9 @@ from tkinter import filedialog
 import matplotlib.pyplot as plt
 import numpy as np
 from PIL import Image
+from tensorflow.keras.models import load_model
 
+from controlador.controlador_classificador import ControladorResnet, ControladorSvm
 from modelo.imagem_hsv import ImagemHSV
 from modelo.imagem_rgb import ImagemRGB
 from modelo.imagem_tons_cinza import ImagemTonsCinza
@@ -69,6 +71,10 @@ class Controlador:
 
         # Janela ResNet
         self.janela_resnet = None
+
+        # Controladores dos modelos
+        self.controlador_resnet = None
+        self.controlador_svm = None
 
     def abrir_arquivo_imagem(self, f) -> None:
         """
@@ -294,7 +300,8 @@ class Controlador:
         Exibe o classificador SVM.
         :return:
         """
-        self.janela_svm = JanelaClassificador("Support Vector Machine (SVM)")
+        self.controlador_svm = ControladorSvm(self.imagem_rgb)
+        self.janela_svm = JanelaClassificador(self.controlador_svm, "Support Vector Machine (SVM)")
         self.janela_svm.mainloop()
 
     def exibir_classificador_resnet50(self):
@@ -302,5 +309,6 @@ class Controlador:
         Exibe o classificador ResNet50.
         :return:
         """
-        self.janela_resnet = JanelaClassificador("ResNet50")
+        self.controlador_resnet = ControladorResnet(self.imagem_rgb)
+        self.janela_resnet = JanelaClassificador(self.controlador_resnet, "ResNet50")
         self.janela_resnet.mainloop()
