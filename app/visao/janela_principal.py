@@ -1,8 +1,8 @@
 import tkinter
 
 from controlador.controlador import Controlador
-from visao.frame_principal import FramePrincipal
-from visao.frame_imagem import FrameImagem
+from .frame_principal import FramePrincipal
+from .frame_imagem import FrameImagem
 
 
 class JanelaPrincipal(tkinter.Tk):

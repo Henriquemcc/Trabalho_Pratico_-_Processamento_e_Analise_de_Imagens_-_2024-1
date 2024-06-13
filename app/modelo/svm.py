@@ -2,11 +2,11 @@ import numpy
 from tensorflow.python.keras.models import load_model
 import PIL
 
-from modelo.classificador import Classificador
-from modelo.imagem import Imagem
-from modelo.imagem_hsv import ImagemHSV
-from modelo.imagem_rgb import ImagemRGB
-from modelo.imagem_tons_cinza import ImagemTonsCinza
+from .classificador import Classificador
+from .imagem import Imagem
+from .imagem_hsv import ImagemHSV
+from .imagem_rgb import ImagemRGB
+from .imagem_tons_cinza import ImagemTonsCinza
 
 
 class Svm(Classificador):

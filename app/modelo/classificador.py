@@ -1,5 +1,5 @@
-from modelo.imagem import Imagem
-from modelo.imagem_rgb import ImagemRGB
+from .imagem import Imagem
+from .imagem_rgb import ImagemRGB
 
 
 class Classificador:
