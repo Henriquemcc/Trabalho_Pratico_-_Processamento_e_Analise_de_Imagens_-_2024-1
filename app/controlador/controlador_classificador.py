@@ -38,14 +38,14 @@ class ControladorClassificador:
         labels = self.labels
         tempo_inicio = time.time_ns()
         resultado = modelo.predict(imagem)
-        tempo_fim = time.time_ns()
         resultado = numpy.argmax(resultado)
         if classifier_type == ClassifierTypes.BINARY:
             resultado = 1 if resultado == self.negative_result else 0
             labels = self.binary_labels
+        tempo_fim = time.time_ns()
         out_label.config(text=labels[resultado])
-        tempo_gasto = tempo_fim - tempo_inicio
-        label_tempo.config(text="Tempo gasto: {}ns".format(tempo_gasto))
+        tempo_gasto = (tempo_fim - tempo_inicio)/10**9
+        label_tempo.config(text="Tempo gasto: {}s".format(tempo_gasto))
 
     def classificar_svm(self, imagem, out_label, label_tempo, classifier_type=ClassifierTypes.MULTICLASS):
         """
