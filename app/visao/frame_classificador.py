@@ -1,3 +1,4 @@
+import time
 import tkinter
 
 from controlador.controlador_classificador import ControladorClassificador
@@ -51,6 +52,7 @@ class FrameClassificador(tkinter.Frame):
             command=lambda: self.int_controller.classificar_svm(
                 self.parent_controller.controlador.imagem_rgb,
                 self.label_classificacao,
+                self.label_tempo,
                 classifier_type=ClassifierTypes(self.selected_radio_button_classificacao.get())
             )
         )
@@ -63,7 +65,8 @@ class FrameClassificador(tkinter.Frame):
             command=lambda: self.int_controller.classificar_resnet(
                 self.parent_controller.controlador.imagem_rgb,
                 self.label_classificacao,
-                classifier_type=ClassifierTypes(self.selected_radio_button_classificacao.get())
+                self.label_tempo,
+                classifier_type=ClassifierTypes(self.selected_radio_button_classificacao.get()),
             )
         )
         self.botao_classificar_resnet.pack(side="top", fill="x", pady=10)
@@ -71,3 +74,7 @@ class FrameClassificador(tkinter.Frame):
         # Classificacao
         self.label_classificacao = tkinter.Label(self, text="Classificação: ")
         self.label_classificacao.pack(side="top", fill="x", pady=10)
+
+        # Tempo gasto para classificar
+        self.label_tempo = tkinter.Label(self, text="Tempo gasto: ")
+        self.label_tempo.pack(side="top", fill="x", pady=10)

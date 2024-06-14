@@ -1,3 +1,5 @@
+import time
+
 import numpy
 
 from modelo.classifier_types import ClassifierTypes
@@ -28,29 +30,33 @@ class ControladorClassificador:
         self.binary_labels = ['Com câncer', 'Sem câncer']
         self.negative_result = 4
 
-    def __classificar(self, imagem, out_label, modelo, classifier_type=ClassifierTypes.MULTICLASS):
+    def __classificar(self, imagem, out_label, modelo, label_tempo, classifier_type=ClassifierTypes.MULTICLASS):
         """
         Realiza a classificação da imagem.
         :return:
         """
         labels = self.labels
+        tempo_inicio = time.time_ns()
         resultado = modelo.predict(imagem)
+        tempo_fim = time.time_ns()
         resultado = numpy.argmax(resultado)
         if classifier_type == ClassifierTypes.BINARY:
             resultado = 1 if resultado == self.negative_result else 0
             labels = self.binary_labels
         out_label.config(text=labels[resultado])
+        tempo_gasto = tempo_fim - tempo_inicio
+        label_tempo.config(text="Tempo gasto: {}ns".format(tempo_gasto))
 
-    def classificar_svm(self, imagem, out_label, classifier_type=ClassifierTypes.MULTICLASS):
+    def classificar_svm(self, imagem, out_label, label_tempo, classifier_type=ClassifierTypes.MULTICLASS):
         """
         Realiza a classificação da imagem utilizando o SVM.
         :return:
         """
-        return self.__classificar(imagem, out_label, self.modelo_svm, classifier_type)
+        return self.__classificar(imagem, out_label, self.modelo_svm, label_tempo, classifier_type)
 
-    def classificar_resnet(self, imagem, out_label, classifier_type=ClassifierTypes.MULTICLASS):
+    def classificar_resnet(self, imagem, out_label, label_tempo, classifier_type=ClassifierTypes.MULTICLASS):
         """
         Realiza a classificação da imagem utilizando o ResNet50.
         :return:
         """
-        return self.__classificar(imagem, out_label, self.modelo_resnet, classifier_type)
+        return self.__classificar(imagem, out_label, self.modelo_resnet, label_tempo, classifier_type)
