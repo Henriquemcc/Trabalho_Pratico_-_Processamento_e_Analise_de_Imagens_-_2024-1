@@ -12,10 +12,13 @@ from modelo.imagem_tons_cinza import ImagemTonsCinza
 
 class Controlador:
     """
-    Controlador.
+    Controlador principal do programa.
     """
 
     def __init__(self):
+        """
+        Constrói uma nova instância de Controlador.
+        """
 
         # Tipos de arquivos de imagem
         self.tipos_arquivos_imagem = [
@@ -25,7 +28,6 @@ class Controlador:
             ("Joint Photographic Experts Group", ".jpg"),
             ("Todos os formatos", "*")
         ]
-
 
         self.caminho = None
         self.imagem_rgb = None

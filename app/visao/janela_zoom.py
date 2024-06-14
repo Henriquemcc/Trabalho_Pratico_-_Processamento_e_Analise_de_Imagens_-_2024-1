@@ -3,7 +3,17 @@ import tkinter
 
 
 class JanelaZoom(tkinter.Tk):
+    """
+    Janela utilizada para realizar o zoom na imagem.
+    """
+
     def __init__(self, controlador, adicionar_imagem):
+        """
+        Constrói uma nova instância da JanelaZoom.
+        :param controlador: Controlador que instanciou esta janela.
+        :param adicionar_imagem: Método para adicionar a imagem na tela.
+        """
+
         # Cria a janela principal
         super().__init__()
         self.title("Janela de Zoom")
@@ -35,6 +45,10 @@ class JanelaZoom(tkinter.Tk):
         self.mainloop()
 
     def aplicar_zoom(self):
+        """
+        Aplica o zoom na imagem.
+        :return:
+        """
         self.controlador.set_zoom(
             [
                 [int(self.min_x_entry.get()), int(self.max_x_entry.get())],

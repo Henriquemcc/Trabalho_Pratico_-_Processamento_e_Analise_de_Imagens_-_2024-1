@@ -10,6 +10,11 @@ class FrameClassificador(tkinter.Frame):
     """
 
     def __init__(self, parent, controller):
+        """
+        Constrói uma nova instância do FrameClassificador.
+        :param parent: Widget pai.
+        :param controller: Controlador que instanciou esta classe.
+        """
 
         # Controladores
         self.parent_controller = controller

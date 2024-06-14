@@ -7,7 +7,7 @@ from modelo.svm import SVM
 
 class ControladorClassificador:
     """
-    Controlador responsável pelo modelo.
+    Controlador responsável pelo modelo de classificação.
     """
 
     def __init__(self):
@@ -24,11 +24,11 @@ class ControladorClassificador:
         self.modelo_resnet = Resnet50()
 
         # Labels
-        self.labels = ['ASC-H','ASC-US','HSIL','LSIL','Negative for intraepithelial lesion','SCC']
+        self.labels = ['ASC-H', 'ASC-US', 'HSIL', 'LSIL', 'Negative for intraepithelial lesion', 'SCC']
         self.binary_labels = ['Com câncer', 'Sem câncer']
         self.negative_result = 4
 
-    def __classificar(self, imagem, out_label, modelo, classifier_type = ClassifierTypes.MULTICLASS):
+    def __classificar(self, imagem, out_label, modelo, classifier_type=ClassifierTypes.MULTICLASS):
         """
         Realiza a classificação da imagem.
         :return:
@@ -41,14 +41,14 @@ class ControladorClassificador:
             labels = self.binary_labels
         out_label.config(text=labels[resultado])
 
-    def classificar_svm(self, imagem, out_label, classifier_type = ClassifierTypes.MULTICLASS):
+    def classificar_svm(self, imagem, out_label, classifier_type=ClassifierTypes.MULTICLASS):
         """
         Realiza a classificação da imagem utilizando o SVM.
         :return:
         """
         return self.__classificar(imagem, out_label, self.modelo_svm, classifier_type)
 
-    def classificar_resnet(self, imagem, out_label, classifier_type = ClassifierTypes.MULTICLASS):
+    def classificar_resnet(self, imagem, out_label, classifier_type=ClassifierTypes.MULTICLASS):
         """
         Realiza a classificação da imagem utilizando o ResNet50.
         :return:

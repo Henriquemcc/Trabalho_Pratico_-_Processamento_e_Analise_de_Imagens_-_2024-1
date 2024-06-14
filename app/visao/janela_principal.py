@@ -46,8 +46,8 @@ class JanelaPrincipal(tkinter.Tk):
         menu_visualizar.add_command(
             label="Aumentar Zoom (Simples)",
             command=lambda: self.controlador.set_zoom(
-                [[self.controlador.zoom[0][0]+10, self.controlador.zoom[0][1]-10],
-                [self.controlador.zoom[1][0]+10, self.controlador.zoom[1][1]-10]],
+                [[self.controlador.zoom[0][0] + 10, self.controlador.zoom[0][1] - 10],
+                 [self.controlador.zoom[1][0] + 10, self.controlador.zoom[1][1] - 10]],
                 self.adicionar_imagem
             )
         )
