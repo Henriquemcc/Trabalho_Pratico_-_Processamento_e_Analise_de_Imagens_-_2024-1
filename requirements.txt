@@ -33,6 +33,7 @@ python-dateutil==2.9.0.post0
 pyzmq==26.0.3
 six==1.16.0
 stack-data==0.6.3
+tensorflow==2.16.1
 tornado==6.4
 traitlets==5.14.3
 typing_extensions==4.12.1
