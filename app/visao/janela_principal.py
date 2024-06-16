@@ -2,6 +2,7 @@ import tkinter
 
 from controlador.controlador import Controlador
 from .frame_classificador import FrameClassificador
+from .frame_momentos_invariantes_hu import FrameMomentosInvariantesHu
 from .frame_principal import FramePrincipal
 from .frame_imagem import FrameImagem
 from .janela_zoom import JanelaZoom
@@ -128,7 +129,10 @@ class JanelaPrincipal(tkinter.Tk):
         # Menu caracterizar imagem
         menu_caracterizar_imagem = tkinter.Menu(barra_menu, tearoff=0)
         menu_caracterizar_imagem.add_command(label="Descritores de Haralick")
-        menu_caracterizar_imagem.add_command(label="Momentos invariantes de Hu")
+        menu_caracterizar_imagem.add_command(
+            label="Momentos invariantes de Hu",
+            command=lambda: self.controlador.exibir_momentos_hu(self.mostrar_momentos_hu)
+        )
         barra_menu.add_cascade(label="Caracterizar", menu=menu_caracterizar_imagem)
 
         # Menu classificar
@@ -144,7 +148,7 @@ class JanelaPrincipal(tkinter.Tk):
 
         # Controle de paginas
         self.frames = {}
-        for F in (FramePrincipal, FrameImagem, FrameClassificador):
+        for F in (FramePrincipal, FrameImagem, FrameClassificador, FrameMomentosInvariantesHu):
             page_name = F.__name__
             frame = F(container, controller=self)
             self.frames[page_name] = frame
@@ -175,3 +179,7 @@ class JanelaPrincipal(tkinter.Tk):
         """
         self.frames["FrameImagem"].image = image
         self.show_frame("FrameImagem")
+
+    def mostrar_momentos_hu(self, momentos_hu):
+        self.frames["FrameMomentosInvariantesHu"].momentos_hu = momentos_hu
+        self.show_frame("FrameMomentosInvariantesHu")

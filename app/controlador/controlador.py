@@ -5,6 +5,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 from PIL import Image
 
+from modelo.MomentoHu import calculate_hu_moments
 from modelo.imagem_hsv import ImagemHSV
 from modelo.imagem_rgb import ImagemRGB
 from modelo.imagem_tons_cinza import ImagemTonsCinza
@@ -51,7 +52,16 @@ class Controlador:
         self.zoom = None
         self.max_zoom = None
 
+        self.momentos_hu = None
+        self.update_momentos_hu = False
+
     def set_zoom(self, zoom, f):
+        """
+        Altera o zoom da imagem.
+        :param zoom: Novo zoom a ser aplicado na imagem
+        :param f: Função passada pela janela principal a ser executada por esta função com a imagem a ser exibida.
+        :return:
+        """
         if (
                 zoom[0][0] < self.max_zoom[0][0] or
                 zoom[0][1] > self.max_zoom[0][1] or
@@ -80,7 +90,7 @@ class Controlador:
         self.imagem_rgb = ImagemRGB.from_file(self.caminho)
         self.last_shown = 'rgb'
         self.zoom = self.max_zoom = [[0, self.imagem_rgb.matriz.shape[0]], [0, self.imagem_rgb.matriz.shape[1]]]
-        self.update_tons_cinza = self.update_hsv = True
+        self.update_tons_cinza = self.update_hsv = self.update_momentos_hu = True
         self.update_histograma_cinza = self.update_histograma_hsv = self.update_histograma_hsv_2d = True
         f(self.imagem_rgb.to_image(zoom=self.zoom))
 
@@ -295,5 +305,17 @@ class Controlador:
         buf.seek(0)
         return Image.open(buf)
 
-    def exibir_janela_classificador(self):
-        pass
+    def exibir_momentos_hu(self, f):
+        """
+        Exibe os momentos invariantes de Hu.
+        :param f: Função a ser executada por esta função passando os momentos invariantes de Hu.
+        :return:
+        """
+        # Gerando os momentos invariantes de Hu
+        if self.update_momentos_hu:
+            self.__gerar_imagem_cinza()
+            self.momentos_hu = calculate_hu_moments(self.imagem_tons_cinza.matriz)
+
+        f(self.momentos_hu)
+
+
