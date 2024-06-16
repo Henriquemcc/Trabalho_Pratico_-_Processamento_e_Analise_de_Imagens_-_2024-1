@@ -239,10 +239,71 @@
 
 \begin{figure}
     \centering
-    \includegraphics{Matriz confusao SVM.png}
+    \includegraphics[width=\textwidth]{Matriz confusao SVM.png}
     \caption{Matriz de confusão do SVM}
     \label{fig:matriz-confusao-svm}
 \end{figure}
+
+\begin{table}[]
+    \centering
+    \begin{tabular}{|c|c|}
+        \hline
+         Métrica & Valor\\
+         \hline
+         Taxa de Verdadeiro Positivo & 0,300543669670107\\
+         \hline
+         Taxa de Verdadeiro Negativo & 0,8592048355807957\\
+         \hline
+         Taxa de Falso Positivo & 0,1407951644192041\\
+         \hline
+         Taxa de Falso Negativo & 0,6994563303298932\\
+         \hline
+         Precisão & 0,23033164383616966\\
+         \hline
+         Sensibilidade & 0,300543669670107\\
+         \hline
+         Acurácia & 0,7669352432109817\\
+         \hline
+         F-Measure & 0,19698731039736972\\
+         \hline
+    \end{tabular}
+    \caption{Métricas do SVM.}
+    \label{tab:metricas-svm}
+\end{table}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=\textwidth]{Matriz confusao ResNet50.png}
+    \caption{Matriz de confusão do ResNet50}
+    \label{fig:matrix-confusao-resnet50}
+\end{figure}
+
+\begin{table}[]
+    \centering
+    \begin{tabular}{|c|c|}
+        \hline
+         Métrica & Valor\\
+         \hline
+         Taxa de Verdadeiro Positivo & 0,5347949567293516\\
+         \hline
+         Taxa de Verdadeiro Negativo & 0,9111974985645813\\
+         \hline
+         Taxa de Falso Positivo & 0,08880250143541872\\
+         \hline
+         Taxa de Falso Negativo & 0,4652050432706483\\
+         \hline
+         Precisão & 0,6109054986202922\\
+         \hline
+         Sensibilidade & 0,5347949567293516\\
+         \hline
+         Acurácia & 0,9346463742166518\\
+         \hline
+         F-Measure & 0,5595695511757917\\
+         \hline
+    \end{tabular}
+    \caption{Métricas do ResNet50.}
+    \label{tab:metricas-resnet50}
+\end{table}
 
 \paragraph{}Através da matriz de confusão do modelo SVM, foi possível concluir que o Supporting Vector Machine não é adequado para a identificação de células cancerígenas.
 
