@@ -38,7 +38,6 @@ class FrameMomentosInvariantesHu(tkinter.Frame):
         :param value: Novo valor para o atributo momentos_hu.
         :return:
         """
-        print(value)
         self.__momentos_hu = value
         for i in range(min(7, len(value))):
             self.label_momento_hu[i].config(text=value[i][0])

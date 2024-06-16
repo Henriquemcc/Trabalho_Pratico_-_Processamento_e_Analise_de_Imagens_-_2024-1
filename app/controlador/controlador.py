@@ -5,6 +5,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 from PIL import Image
 
+from modelo.DescritoresHaralick import calcula_descritores_haralick
 from modelo.MomentoHu import calculate_hu_moments
 from modelo.imagem_hsv import ImagemHSV
 from modelo.imagem_rgb import ImagemRGB
@@ -55,6 +56,9 @@ class Controlador:
         self.momentos_hu = None
         self.update_momentos_hu = False
 
+        self.descritores_haralick = None
+        self.update_descritores_haralick = None
+
     def set_zoom(self, zoom, f):
         """
         Altera o zoom da imagem.
@@ -90,8 +94,9 @@ class Controlador:
         self.imagem_rgb = ImagemRGB.from_file(self.caminho)
         self.last_shown = 'rgb'
         self.zoom = self.max_zoom = [[0, self.imagem_rgb.matriz.shape[0]], [0, self.imagem_rgb.matriz.shape[1]]]
-        self.update_tons_cinza = self.update_hsv = self.update_momentos_hu = True
+        self.update_tons_cinza = self.update_hsv = True
         self.update_histograma_cinza = self.update_histograma_hsv = self.update_histograma_hsv_2d = True
+        self.update_momentos_hu = self.update_descritores_haralick = True
         f(self.imagem_rgb.to_image(zoom=self.zoom))
 
     def __gerar_imagem_cinza(self):
@@ -315,7 +320,21 @@ class Controlador:
         if self.update_momentos_hu:
             self.__gerar_imagem_cinza()
             self.momentos_hu = calculate_hu_moments(self.imagem_tons_cinza.matriz)
+            self.update_momentos_hu = False
 
         f(self.momentos_hu)
+
+    def exibir_descritores_haralick(self, f):
+        """
+        Exibe os descritores de Haralick.
+        :param f: Função a ser executada por esta função passando os descritores de haralick.
+        :return:
+        """
+        if self.update_descritores_haralick:
+            self.__gerar_imagem_cinza()
+            self.descritores_haralick = calcula_descritores_haralick(self.imagem_tons_cinza.matriz)
+            self.update_descritores_haralick = False
+
+        f(self.descritores_haralick)
 
 

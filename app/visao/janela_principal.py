@@ -2,6 +2,7 @@ import tkinter
 
 from controlador.controlador import Controlador
 from .frame_classificador import FrameClassificador
+from .frame_descritores_haralick import FrameDescritoresHaralick
 from .frame_momentos_invariantes_hu import FrameMomentosInvariantesHu
 from .frame_principal import FramePrincipal
 from .frame_imagem import FrameImagem
@@ -128,7 +129,10 @@ class JanelaPrincipal(tkinter.Tk):
 
         # Menu caracterizar imagem
         menu_caracterizar_imagem = tkinter.Menu(barra_menu, tearoff=0)
-        menu_caracterizar_imagem.add_command(label="Descritores de Haralick")
+        menu_caracterizar_imagem.add_command(
+            label="Descritores de Haralick",
+            command=lambda: self.controlador.exibir_descritores_haralick(self.mostrar_descritores_haralick)
+        )
         menu_caracterizar_imagem.add_command(
             label="Momentos invariantes de Hu",
             command=lambda: self.controlador.exibir_momentos_hu(self.mostrar_momentos_hu)
@@ -148,7 +152,8 @@ class JanelaPrincipal(tkinter.Tk):
 
         # Controle de paginas
         self.frames = {}
-        for F in (FramePrincipal, FrameImagem, FrameClassificador, FrameMomentosInvariantesHu):
+        for F in (FramePrincipal, FrameImagem, FrameClassificador,
+                  FrameMomentosInvariantesHu, FrameDescritoresHaralick):
             page_name = F.__name__
             frame = F(container, controller=self)
             self.frames[page_name] = frame
@@ -181,5 +186,19 @@ class JanelaPrincipal(tkinter.Tk):
         self.show_frame("FrameImagem")
 
     def mostrar_momentos_hu(self, momentos_hu):
+        """
+        Mostra os momentos invariantes de Hu.
+        :param momentos_hu: Momentos invariantes de Hu.
+        :return:
+        """
         self.frames["FrameMomentosInvariantesHu"].momentos_hu = momentos_hu
         self.show_frame("FrameMomentosInvariantesHu")
+
+    def mostrar_descritores_haralick(self, descritores_haralick):
+        """
+        Mostra os descritores de Haralick.
+        :param descritores_haralick: Descritores de Haralick.
+        :return:
+        """
+        self.frames["FrameDescritoresHaralick"].descritores_haralick = descritores_haralick
+        self.show_frame("FrameDescritoresHaralick")
