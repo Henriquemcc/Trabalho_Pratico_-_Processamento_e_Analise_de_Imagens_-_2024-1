@@ -18,161 +18,264 @@
 
 \usepackage{graphicx,url}
 
-%\usepackage[brazil]{babel}   
+\usepackage[brazil]{babel}   
 \usepackage[utf8]{inputenc}  
 
      
 \sloppy
 
-\title{Instructions for Authors of SBC Conferences\\ Papers and Abstracts}
+\title{Trabalho Prático - Processamento e Análise de Imagens}
 
-\author{Luciana P. Nedel\inst{1}, Rafael H. Bordini\inst{2}, Flávio Rech
-  Wagner\inst{1}, Jomi F. Hübner\inst{3} }
-
-
-\address{Instituto de Informática -- Universidade Federal do Rio Grande do Sul
-  (UFRGS)\\
-  Caixa Postal 15.064 -- 91.501-970 -- Porto Alegre -- RS -- Brazil
-\nextinstitute
-  Department of Computer Science -- University of Durham\\
-  Durham, U.K.
-\nextinstitute
-  Departamento de Sistemas e Computação\\
-  Universidade Regional de Blumenal (FURB) -- Blumenau, SC -- Brazil
-  \email{\{nedel,flavio\}@inf.ufrgs.br, R.Bordini@durham.ac.uk,
-  jomi@inf.furb.br}
-}
+\author{Felipe Costa Amaral, Henrique Mendonça Castelar Campos, Larissa Kaweski Siqueira}
 
 \begin{document} 
 
 \maketitle
 
 \begin{abstract}
-  This meta-paper describes the style to be used in articles and short papers
-  for SBC conferences. For papers in English, you should add just an abstract
-  while for the papers in Portuguese, we also ask for an abstract in
-  Portuguese (``resumo''). In both cases, abstracts should not have more than
-  10 lines and must be in the first page of the paper.
+  
 \end{abstract}
      
 \begin{resumo} 
-  Este meta-artigo descreve o estilo a ser usado na confecção de artigos e
-  resumos de artigos para publicação nos anais das conferências organizadas
-  pela SBC. É solicitada a escrita de resumo e abstract apenas para os artigos
-  escritos em português. Artigos em inglês deverão apresentar apenas abstract.
-  Nos dois casos, o autor deve tomar cuidado para que o resumo (e o abstract)
-  não ultrapassem 10 linhas cada, sendo que ambos devem estar na primeira
-  página do artigo.
+  
 \end{resumo}
 
 
-\section{General Information}
+\section{Introdução}
 
-All full papers and posters (short papers) submitted to some SBC conference,
-including any supporting documents, should be written in English or in
-Portuguese. The format paper should be A4 with single column, 3.5 cm for upper
-margin, 2.5 cm for bottom margin and 3.0 cm for lateral margins, without
-headers or footers. The main font must be Times, 12 point nominal size, with 6
-points of space before each paragraph. Page numbers must be suppressed.
+\paragraph{}O Câncer Cervical, também conhecido como Câncer de Colo de Útero, é uma doença comum entre as mulheres ao redor do mundo. Um dos mecanismos utilizados para a prevenção desse tipo de doença é o uso de imagens médicas para diagnóstico. Um dos métodos de imagem médica utilizados é a citologia, por meio do exame Papanicolau, que detecta anomalias celulares. Ele consiste na extração de amostras de células do paciente, e a aplicação de corantes nelas. Dependendo da forma como as células reagem aos corantes, isso indica a presença ou não de câncer.
 
-Full papers must respect the page limits defined by the conference.
-Conferences that publish just abstracts ask for \textbf{one}-page texts.
+\paragraph{}Este artigo aborda o desenvolvimento de técnicas de aprendizado de máquina para a detecção de células cancerosas no exame Papanicolau, por meio de dois classificadores: o Support Vector Machines (SVM) e o Residual Neural Network de 50 camadas (ResNet50).
 
-\section{First Page} \label{sec:firstpage}
+\section{Implementação}
 
-The first page must display the paper title, the name and address of the
-authors, the abstract in English and ``resumo'' in Portuguese (``resumos'' are
-required only for papers written in Portuguese). The title must be centered
-over the whole page, in 16 point boldface font and with 12 points of space
-before itself. Author names must be centered in 12 point font, bold, all of
-them disposed in the same line, separated by commas and with 12 points of
-space after the title. Addresses must be centered in 12 point font, also with
-12 points of space after the authors' names. E-mail addresses should be
-written using font Courier New, 10 point nominal size, with 6 points of space
-before and 6 points of space after.
+\paragraph{}A implementação da solução de software foi feita na linguagem de programação Python. Para isso foram criados três pacotes (packages): modelo, visão e controlador, seguindo o padrão Model View Controller.
 
-The abstract and ``resumo'' (if is the case) must be in 12 point Times font,
-indented 0.8cm on both sides. The word \textbf{Abstract} and \textbf{Resumo},
-should be written in boldface and must precede the text.
+\paragraph{}No pacote modelo foram criadas as classes:
 
-\section{CD-ROMs and Printed Proceedings}
+\begin{itemize}
+    \item \textit{ImagemRGB}, que implementa os métodos e atributos utilizados para a manipulação de uma imagem RGB.
+    
+    \item \textit{ImagemHSV}, que implementa os métodos e atributos utilizados para a manipulação de uma imagem HSV.
+    
+    \item \textit{ImagemTonsCinza}, que implementa os métodos e atributos utilizados para a manipulação de uma imagem em tons de cinza.
+    
+    \item \textit{Imagem}, classe abstrata que é herdada pelas demais classes de Imagem, que implementa os métodos e atributos comuns utilizados na manipulação de imagens.
+\end{itemize}
 
-In some conferences, the papers are published on CD-ROM while only the
-abstract is published in the printed Proceedings. In this case, authors are
-invited to prepare two final versions of the paper. One, complete, to be
-published on the CD and the other, containing only the first page, with
-abstract and ``resumo'' (for papers in Portuguese).
+\paragraph{}No pacote visão (visao) foram criadas as classes:
 
-\section{Sections and Paragraphs}
+\begin{itemize}
+    \item \textit{FrameImagem}, que é o frame que é exibido quando uma imagem é mostrada.
 
-Section titles must be in boldface, 13pt, flush left. There should be an extra
-12 pt of space before each title. Section numbering is optional. The first
-paragraph of each section should not be indented, while the first lines of
-subsequent paragraphs should be indented by 1.27 cm.
+    \item \textit{FramePrincipal}, que é o primeiro frame a ser mostrado ao abrir o programa.
+    
+    \item \textit{FrameClassificador}, que mostra as opções para classificar a imagem.
+    
+    \item \textit{FrameDescritoresHaralick}, que mostra os Descritores de Haralick.
 
-\subsection{Subsections}
+    \item \textit{FrameMomentosInvariantesHu}, que mostra os Momentos Invariantes de Hu.
 
-The subsection titles must be in boldface, 12pt, flush left.
+    \item \textit{JanelaPrincipal}, que é responsável por mostrar a janela principal do programa.
+    
+    \item \textit{JanelaZoom}, que mostra opções avançadas de zoom na imagem.
+\end{itemize}
 
-\section{Figures and Captions}\label{sec:figs}
+\paragraph{}No pacote controlador foi criada a classe Controlador, que é responsável por relacionar a interface gráfica com os dados do modelo.
 
+\paragraph{}A interface gráfica foi construída com o uso da biblioteca tkinter, nativa do Python. Para isso foram criadas duas janelas e cinco frames.
 
-Figure and table captions should be centered if less than one line
-(Figure~\ref{fig:exampleFig1}), otherwise justified and indented by 0.8cm on
-both margins, as shown in Figure~\ref{fig:exampleFig2}. The caption font must
-be Helvetica, 10 point, boldface, with 6 points of space before and after each
-caption.
+\paragraph{}As janelas desenvolvidas foram:
 
-\begin{figure}[ht]
-\centering
-\includegraphics[width=.5\textwidth]{fig1.jpg}
-\caption{A typical figure}
-\label{fig:exampleFig1}
+\begin{itemize}
+    \item A janela principal, que é a primeira janela aberta pelo programa.
+
+    \item A janela de zoom, que permite a especificação da nova área da imagem a ser exibida.
+\end{itemize}
+
+\paragraph{}E os frames desenvolvidos foram:
+
+\begin{itemize}
+    \item Frame principal, que é o primeiro frame a ser exibido pelo programa. Nele contém os nomes dos desenvolvedores.
+
+    \item Frame imagem, que é o frame utilizado na exibição de imagens.
+
+    \item Frame classificador, que é o frame utilizado para classificar uma imagem.
+
+    \item Frame descritores de Haralick, que mostra os Descritores de Haralick.
+
+    \item Frame momentos invariantes de Hu, que mostra os Momentos invariantes de Hu.
+\end{itemize}
+
+\begin{figure}
+    \centering
+    \includegraphics{Captura de tela 2024-06-10 094756.png}
+    \caption{Janela principal, quando o programa é iniciado.}
+    \label{fig:janela-principal}
 \end{figure}
 
-\begin{figure}[ht]
-\centering
-\includegraphics[width=.3\textwidth]{fig2.jpg}
-\caption{This figure is an example of a figure caption taking more than one
-  line and justified considering margins mentioned in Section~\ref{sec:figs}.}
-\label{fig:exampleFig2}
+\paragraph{}Na janela principal é mostrado a barra de menu com os menus: ‘Arquivo’, ‘Visualizar’, ‘Converter’, ‘Histogramas’, ‘Caracterizar’ e ‘Classificar’.
+
+\paragraph{}O menu ‘Arquivo’ possui o botão ‘Abrir imagem’, que permite abrir um arquivo de imagem.
+
+\paragraph{}O menu ‘Visualizar’ possui os botões:
+
+\begin{itemize}
+    \item ‘Aumentar zoom (Simples)’, que permite aumentar o zoom da imagem no seu centro.
+
+    \item ‘Aumentar zoom (Avançado)’, que permite aumentar o zoom por meio da inserção da nova fronteira.
+
+    \item ‘Remover zoom’, que permite retirar o zoom.
+\end{itemize}
+
+\paragraph{}O menu ‘Converter’ possui os botões:
+
+\begin{itemize}
+    \item ‘RGB’, que converte a imagem para RGB.
+    
+    \item ‘Tons de cinza’, que converte a imagem para tons de cinza.
+    
+    \item ‘HSV’, que converte a imagem para HSV.
+\end{itemize}
+
+\paragraph{}O menu ‘Histogramas’ possui os botões:
+
+\begin{itemize}
+    \item ‘Tons de cinza’, que gera e mostra o histograma da imagem em tons de cinza.
+
+    \item 'HSV\_2D', que gera e mostra o histograma HSV 2D, relacionando os valores de Hue com Value.
+
+    \item Submenu ‘HSV’, que gera e mostra os histogramas para ‘Hue’, ‘Saturation’ e ‘Value’.
+\end{itemize}
+
+\paragraph{}O menu ‘Caracterizar’ possui os botões:
+
+\begin{itemize}
+    \item ‘Descritores de Haralick’, que mostra os Descritores de Haralick.
+
+    \item ‘Momentos invariantes de Hu’, que mostra os Momentos invariantes de Hu.
+\end{itemize}
+
+\paragraph{}E o botão ‘Classificar’, que alterna para o frame de classificação, que mostra as opções para classificar a imagem.
+
+\begin{figure}
+    \centering
+    \includegraphics{Captura de tela 2024-06-10 094827.png}
+    \caption{Janela principal, quando uma imagem é aberta.}
+    \label{fig:janela-principal-imagem-aberta}
 \end{figure}
 
-In tables, try to avoid the use of colored or shaded backgrounds, and avoid
-thick, doubled, or unnecessary framing lines. When reporting empirical data,
-do not use more decimal digits than warranted by their precision and
-reproducibility. Table caption must be placed before the table (see Table 1)
-and the font used must also be Helvetica, 10 point, boldface, with 6 points of
-space before and after each caption.
+\begin{figure}
+    \centering
+    \includegraphics{Captura de tela 2024-06-10 094843.png}
+    \caption{Janela principal, exibindo uma imagem em tons de cinza.}
+    \label{fig:janela-principal-tons-cinza}
+\end{figure}
 
-\begin{table}[ht]
-\centering
-\caption{Variables to be considered on the evaluation of interaction
-  techniques}
-\label{tab:exTable1}
-\includegraphics[width=.7\textwidth]{table.jpg}
-\end{table}
+\begin{figure}
+    \centering
+    \includegraphics{Captura de tela 2024-06-10 094858.png}
+    \caption{Janela principal, exibindo uma imagem HSV.}
+    \label{fig:janela-principal-hsv}
+\end{figure}
 
-\section{Images}
+\begin{figure}
+    \centering
+    \includegraphics{Captura de tela 2024-06-10 094919.png}
+    \caption{Janela principal, exibindo o histograma de uma imagem em tons de cinza.}
+    \label{fig:janela-principal-histograma-tons-cinza}
+\end{figure}
 
-All images and illustrations should be in black-and-white, or gray tones,
-excepting for the papers that will be electronically available (on CD-ROMs,
-internet, etc.). The image resolution on paper should be about 600 dpi for
-black-and-white images, and 150-300 dpi for grayscale images.  Do not include
-images with excessive resolution, as they may take hours to print, without any
-visible difference in the result. 
+\begin{figure}
+    \centering
+    \includegraphics{Captura de tela 2024-06-10 094944.png}
+    \caption{Janela principal, exibindo o histograma Hue da imagem HSV.}
+    \label{fig:janela-principal-histograma-hue}
+\end{figure}
 
-\section{References}
+\begin{figure}
+    \centering
+    \includegraphics{Captura de tela 2024-06-10 095002.png}
+    \caption{Janela principal, exibindo o histograma Saturation da imagem HSV.}
+    \label{fig:janela-principal-histograma-saturation}
+\end{figure}
 
-Bibliographic references must be unambiguous and uniform.  We recommend giving
-the author names references in brackets, e.g. \cite{knuth:84},
-\cite{boulic:91}, and \cite{smith:99}.
+\begin{figure}
+    \centering
+    \includegraphics{Captura de tela 2024-06-10 095102.png}
+    \caption{Janela principal, exibindo o histograma Value da imagem HSV.}
+    \label{fig:janela-principal-histograma-value}
+\end{figure}
 
-The references must be listed using 12 point font size, with 6 points of space
-before each reference. The first line of each reference should not be
-indented, while the subsequent should be indented by 0.5 cm.
+\begin{figure}
+    \centering
+    \includegraphics{Captura de tela 2024-06-10 095121.png}
+    \caption{Janela principal, exibindo o histograma 2D da imagem HSV.}
+    \label{fig:janela-principal-histograma-2d-hsv}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics{Captura de tela 2024-06-16 120712.png}
+    \caption{Janela principal, exibindo as opções para classificar a imagem.}
+    \label{fig:janela-principal-classificar-imagem}
+\end{figure}
+
+\paragraph{}As bibliotecas utilizadas junto ao programa foram:
+
+\begin{itemize}
+    \item Numpy, que é utilizado para a manipulação de vetores.
+    
+    \item Pillow, que é utilizado para o carregamento e manipulação de imagens.
+    
+    \item TensorFlow, que é utilizado para a criação dos modelos de aprendizado de máquina (SVM e ResNet50).
+
+    \item Matplotlib, que é utilizado para a geração de gráficos (nos histogramas).
+\end{itemize}
+
+\section{Resultados}
+
+\subsection{Qualidade dos resultados}
+
+\begin{figure}
+    \centering
+    \includegraphics{Matriz confusao SVM.png}
+    \caption{Matriz de confusão do SVM}
+    \label{fig:matriz-confusao-svm}
+\end{figure}
+
+\paragraph{}Através da matriz de confusão do modelo SVM, foi possível concluir que o Supporting Vector Machine não é adequado para a identificação de células cancerígenas.
+
+\paragraph{}O modelo foi treinado de diversas formas diferentes, sempre maximizando o score em um valor fixo, o que significa que o melhor valor possível, utilizando esta base de dados, foi alcançado.
+
+\subsection{Tempo}
+
+\begin{figure}
+    \centering
+    \includegraphics{ResNet50 vs SVM media.png}
+    \caption{Gráfico comparando o tempo gasto médio de classificação no SVM e no ResNet50.}
+    \label{fig:grafico-svm-vs-resnet-tempo}
+\end{figure}
+
+\paragraph{}Através do tempo médio de processamento dos modelos, foi possível concluir que o Supporting Vector Machines é mais rápido para classificar uma única imagem que o Residual Neural Network de 50 camadas.
+
+\begin{figure}
+    \centering
+    \includegraphics{ResNet50 vs SVM por classe.png}
+    \caption{Gráfico comparando o tempo gasto de classificação no SVM e no ResNet50 por classe.}
+    \label{fig:grafico-svm-vs-resnet-tempo-por-classe}
+\end{figure}
+
+\section{Conclusão}
+
+\nocite{cancerCervical}
+\nocite{coloracaoPapanicolau}
+\nocite{papanicolauStain}
+\nocite{resnet}
+\nocite{svm}
 
 \bibliographystyle{sbc}
-\bibliography{sbc-template}
+\bibliography{bibliografia}
+
 
 \end{document}
