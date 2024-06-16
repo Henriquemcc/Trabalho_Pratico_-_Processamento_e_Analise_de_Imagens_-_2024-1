@@ -13,13 +13,11 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \documentclass[12pt]{article}
-
 \usepackage{sbc-template}
-
 \usepackage{graphicx,url}
-
 \usepackage[brazil]{babel}   
-\usepackage[utf8]{inputenc}  
+\usepackage[utf8]{inputenc} 
+\usepackage{float}
 
      
 \sloppy
@@ -45,7 +43,7 @@
 
 \paragraph{}O Câncer Cervical, também conhecido como Câncer de Colo de Útero, é uma doença comum entre as mulheres ao redor do mundo. Um dos mecanismos utilizados para a prevenção desse tipo de doença é o uso de imagens médicas para diagnóstico. Um dos métodos de imagem médica utilizados é a citologia, por meio do exame Papanicolau, que detecta anomalias celulares. Ele consiste na extração de amostras de células do paciente, e a aplicação de corantes nelas. Dependendo da forma como as células reagem aos corantes, isso indica a presença ou não de câncer.
 
-\paragraph{}Este artigo aborda o desenvolvimento de técnicas de aprendizado de máquina para a detecção de células cancerosas no exame Papanicolau, por meio de dois classificadores: o Support Vector Machines (SVM) e o Residual Neural Network de 50 camadas (ResNet50).
+\paragraph{}Este artigo aborda o desenvolvimento de técnicas de aprendizado de máquina para a detecção de células cancerosas no exame Papanicolau, por meio de dois classificadores: o \textit{Support Vector Machines} (SVM) e o \textit{Residual Neural Network} de 50 camadas (ResNet50).
 
 \section{Implementação}
 
@@ -250,21 +248,21 @@
         \hline
          Métrica & Valor\\
          \hline
-         Taxa de Verdadeiro Positivo & 0,300543669670107\\
+         Taxa de Verdadeiro Positivo & 0,29706402567682677\\
          \hline
-         Taxa de Verdadeiro Negativo & 0,8592048355807957\\
+         Taxa de Verdadeiro Negativo & 0,8616177719137162\\
          \hline
-         Taxa de Falso Positivo & 0,1407951644192041\\
+         Taxa de Falso Positivo & 0,13838222808628386\\
          \hline
-         Taxa de Falso Negativo & 0,6994563303298932\\
+         Taxa de Falso Negativo & 0,7029359743231732\\
          \hline
-         Precisão & 0,23033164383616966\\
+         Precisão & 0,23151151959845348\\
          \hline
-         Sensibilidade & 0,300543669670107\\
+         Sensibilidade & 0,29706402567682677\\
          \hline
-         Acurácia & 0,7669352432109817\\
+         Acurácia & 0,7746941211578632\\
          \hline
-         F-Measure & 0,19698731039736972\\
+         F-Measure & 0,20164189067018104\\
          \hline
     \end{tabular}
     \caption{Métricas do SVM.}
@@ -320,7 +318,7 @@
 
 \paragraph{}Através do tempo médio de processamento dos modelos, foi possível concluir que o Supporting Vector Machines é mais rápido para classificar uma única imagem que o Residual Neural Network de 50 camadas.
 
-\begin{figure}
+\begin{figure}[H]
     \centering
     \includegraphics{ResNet50 vs SVM por classe.png}
     \caption{Gráfico comparando o tempo gasto de classificação no SVM e no ResNet50 por classe.}
