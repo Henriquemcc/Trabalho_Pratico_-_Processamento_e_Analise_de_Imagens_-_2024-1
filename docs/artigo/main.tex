@@ -30,14 +30,16 @@
 
 \maketitle
 
-\begin{abstract}
-  
+     
+\begin{abstract} 
+This article proposes and implements an interface capable of loading images and classifying them as containing or not cancer cells. Two artificial intelligences will be implemented capable of classifying between five types of cancers and the healthy cell.
+Besides this classifier, the interface will be capable of processing and analyzing the image.
 \end{abstract}
      
 \begin{resumo} 
-  
+Este artigo propõe e implementa uma interface capaz de ler imagens e classificá-las como contendo ou não células cancerígenas. Serão implementadas 2 inteligências artificiais capazes de classificar entre 5 tipos de câncer e a célula saudável.
+Além deste classificador, a interface será capaz de fazer certos processamentos e análises na imagem.
 \end{resumo}
-
 
 \section{Introdução}
 
@@ -219,6 +221,20 @@
     \label{fig:janela-principal-classificar-imagem}
 \end{figure}
 
+\begin{figure}
+    \centering
+    \includegraphics{Captura de tela 2024-06-16 215855.png}
+    \caption{Janela principal, mostrando os Momentos Invariantes de Hu.}
+    \label{fig:janela-principal-momentos-invariante-hu}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics{Captura de tela 2024-06-16 215907.png}
+    \caption{Janela principal, mostrando os Descritores de Haralick.}
+    \label{fig:janela-principal-descritores-haralick}
+\end{figure}
+
 \paragraph{}As bibliotecas utilizadas junto ao programa foram:
 
 \begin{itemize}
@@ -248,21 +264,21 @@
         \hline
          Métrica & Valor\\
          \hline
-         Taxa de Verdadeiro Positivo & 0,29706402567682677\\
+         Taxa de Verdadeiro Positivo & 0,46149403734347655\\
          \hline
-         Taxa de Verdadeiro Negativo & 0,8616177719137162\\
+         Taxa de Verdadeiro Negativo & 0,865422535324905\\
          \hline
-         Taxa de Falso Positivo & 0,13838222808628386\\
+         Taxa de Falso Positivo & 0,13457746467509502\\
          \hline
-         Taxa de Falso Negativo & 0,7029359743231732\\
+         Taxa de Falso Negativo & 0,5385059626565234\\
          \hline
-         Precisão & 0,23151151959845348\\
+         Precisão & 0,2630684113588874\\
          \hline
-         Sensibilidade & 0,29706402567682677\\
+         Sensibilidade & 0,46149403734347655\\
          \hline
-         Acurácia & 0,7746941211578632\\
+         Acurácia & 0,7842680523203728\\
          \hline
-         F-Measure & 0,20164189067018104\\
+         F-Measure & 0,2559065269629602\\
          \hline
     \end{tabular}
     \caption{Métricas do SVM.}
@@ -282,30 +298,35 @@
         \hline
          Métrica & Valor\\
          \hline
-         Taxa de Verdadeiro Positivo & 0,5347949567293516\\
+         Taxa de Verdadeiro Positivo & 0,8993029942974969\\
          \hline
-         Taxa de Verdadeiro Negativo & 0,9111974985645813\\
+         Taxa de Verdadeiro Negativo & 0,9807208072160782\\
          \hline
-         Taxa de Falso Positivo & 0,08880250143541872\\
+         Taxa de Falso Positivo & 0,019279192783921716\\
          \hline
-         Taxa de Falso Negativo & 0,4652050432706483\\
+         Taxa de Falso Negativo & 0,10069700570250299\\
          \hline
-         Precisão & 0,6109054986202922\\
+         Precisão & 0,9328230136088257\\
          \hline
-         Sensibilidade & 0,5347949567293516\\
+         Sensibilidade & 0,8993029942974969\\
          \hline
-         Acurácia & 0,9346463742166518\\
+         Acurácia & 0,9865018216568119\\
          \hline
-         F-Measure & 0,5595695511757917\\
+         F-Measure & 0,9149068540667632\\
          \hline
     \end{tabular}
     \caption{Métricas do ResNet50.}
     \label{tab:metricas-resnet50}
 \end{table}
 
+\paragraph{}O ResNet50 mostrou um resultado melhor que o SVM, porém as métricas relevantes não foram alcançadas com a precisão desejada. Esse desempenho era esperado pois as máquinas utilizadas para treinar o modelo não tinham as configurações ideais para esse tipo de computação.
+
 \paragraph{}Através da matriz de confusão do modelo SVM, foi possível concluir que o Supporting Vector Machine não é adequado para a identificação de células cancerígenas.
 
-\paragraph{}O modelo foi treinado de diversas formas diferentes, sempre maximizando o score em um valor fixo, o que significa que o melhor valor possível, utilizando esta base de dados, foi alcançado.
+\paragraph{}O SVM foi treinado de diversas formas diferentes, sempre maximizando o score em um valor fixo, o que significa que houve overfit durante o treinamento.
+
+\paragraph{}Novamente houve a tentativa de treinamento balanceando a base de treinamento porém a solução não foi eficiente o suficiente para ser satisfatória.
+Entretanto foi possível evitar o overfit e garantir que o resultado era melhor do que aleatório.
 
 \subsection{Tempo}
 
@@ -325,7 +346,18 @@
     \label{fig:grafico-svm-vs-resnet-tempo-por-classe}
 \end{figure}
 
+\paragraph{}Não houve diferença de tempo significativa na classificação entre elementos de classe diferentes.
+
 \section{Conclusão}
+\paragraph{}O presente trabalho apresentou o desenvolvimento de uma interface para classificação de imagens de células cancerígenas utilizando dois modelos de aprendizado de máquina: Support Vector Machines (SVM) e Residual Neural Network de 50 camadas (ResNet50). Através da implementação e análise dos resultados, foi possível verificar que o modelo ResNet50 obteve desempenho significativamente superior em comparação ao SVM, com melhores métricas de precisão, sensibilidade e acurácia.
+
+\paragraph{}Os resultados mostraram que, enquanto o SVM apresentou problemas de overfitting e uma taxa de verdadeiro positivo inferior a 50\%, o ResNet50 demonstrou uma alta taxa de verdadeiro positivo e um baixo índice de falsos negativos. Contudo, apesar da superioridade do ResNet50, ambos os modelos não alcançaram a precisão desejada, indicando a necessidade de ajustes e melhorias no processo de treinamento e otimização dos modelos.
+
+\paragraph{}Além das análises de desempenho, a implementação destacou a importância da escolha adequada dos modelos de aprendizado de máquina e da infraestrutura computacional necessária para o treinamento eficiente desses modelos. O tempo de processamento também foi um fator relevante, com o SVM se mostrando mais rápido na classificação de imagens individuais, enquanto o ResNet50, apesar de mais lento, apresentou resultados mais robustos.
+
+\paragraph{}Portanto, conclui-se que a utilização de redes neurais profundas como o ResNet50 é mais adequada para a tarefa de classificação de células cancerígenas, desde que sejam realizados aprimoramentos no treinamento e na otimização do modelo. Este trabalho contribui para o avanço das técnicas de diagnóstico automatizado, proporcionando uma base para futuras pesquisas e desenvolvimento de soluções mais eficazes na área de processamento e análise de imagens médicas.
+
+\paragraph{}
 
 \nocite{cancerCervical}
 \nocite{coloracaoPapanicolau}
