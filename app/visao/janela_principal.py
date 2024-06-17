@@ -2,8 +2,11 @@ import tkinter
 
 from controlador.controlador import Controlador
 from .frame_classificador import FrameClassificador
+from .frame_descritores_haralick import FrameDescritoresHaralick
+from .frame_momentos_invariantes_hu import FrameMomentosInvariantesHu
 from .frame_principal import FramePrincipal
 from .frame_imagem import FrameImagem
+from .janela_zoom import JanelaZoom
 
 
 class JanelaPrincipal(tkinter.Tk):
@@ -25,7 +28,7 @@ class JanelaPrincipal(tkinter.Tk):
 
         # Configurando o tamanho da janela
         screen_width = 500
-        screen_height = 300
+        screen_height = 350
         self.geometry(f"{screen_width}x{screen_height}+0+0")
 
         # Barra de menu
@@ -42,8 +45,22 @@ class JanelaPrincipal(tkinter.Tk):
 
         # Menu visualizar
         menu_visualizar = tkinter.Menu(barra_menu, tearoff=0)
-        menu_visualizar.add_command(label="Aumentar Zoom")
-        menu_visualizar.add_command(label="Diminuir Zoom")
+        menu_visualizar.add_command(
+            label="Aumentar Zoom (Simples)",
+            command=lambda: self.controlador.set_zoom(
+                [[self.controlador.zoom[0][0] + 10, self.controlador.zoom[0][1] - 10],
+                 [self.controlador.zoom[1][0] + 10, self.controlador.zoom[1][1] - 10]],
+                self.adicionar_imagem
+            )
+        )
+        menu_visualizar.add_command(
+            label="Aumentar Zoom (Avançado)",
+            command=lambda: JanelaZoom(self.controlador, self.adicionar_imagem)
+        )
+        menu_visualizar.add_command(
+            label="Remover Zoom",
+            command=lambda: self.controlador.set_zoom(self.controlador.max_zoom, self.adicionar_imagem)
+        )
         barra_menu.add_cascade(label="Visualizar", menu=menu_visualizar)
 
         # Menu converter
@@ -112,8 +129,14 @@ class JanelaPrincipal(tkinter.Tk):
 
         # Menu caracterizar imagem
         menu_caracterizar_imagem = tkinter.Menu(barra_menu, tearoff=0)
-        menu_caracterizar_imagem.add_command(label="Descritores de Haralick")
-        menu_caracterizar_imagem.add_command(label="Momentos invariantes de Hu")
+        menu_caracterizar_imagem.add_command(
+            label="Descritores de Haralick",
+            command=lambda: self.controlador.exibir_descritores_haralick(self.mostrar_descritores_haralick)
+        )
+        menu_caracterizar_imagem.add_command(
+            label="Momentos invariantes de Hu",
+            command=lambda: self.controlador.exibir_momentos_hu(self.mostrar_momentos_hu)
+        )
         barra_menu.add_cascade(label="Caracterizar", menu=menu_caracterizar_imagem)
 
         # Menu classificar
@@ -129,7 +152,8 @@ class JanelaPrincipal(tkinter.Tk):
 
         # Controle de paginas
         self.frames = {}
-        for F in (FramePrincipal, FrameImagem, FrameClassificador):
+        for F in (FramePrincipal, FrameImagem, FrameClassificador,
+                  FrameMomentosInvariantesHu, FrameDescritoresHaralick):
             page_name = F.__name__
             frame = F(container, controller=self)
             self.frames[page_name] = frame
@@ -160,3 +184,21 @@ class JanelaPrincipal(tkinter.Tk):
         """
         self.frames["FrameImagem"].image = image
         self.show_frame("FrameImagem")
+
+    def mostrar_momentos_hu(self, momentos_hu):
+        """
+        Mostra os momentos invariantes de Hu.
+        :param momentos_hu: Momentos invariantes de Hu.
+        :return:
+        """
+        self.frames["FrameMomentosInvariantesHu"].momentos_hu = momentos_hu
+        self.show_frame("FrameMomentosInvariantesHu")
+
+    def mostrar_descritores_haralick(self, descritores_haralick):
+        """
+        Mostra os descritores de Haralick.
+        :param descritores_haralick: Descritores de Haralick.
+        :return:
+        """
+        self.frames["FrameDescritoresHaralick"].descritores_haralick = descritores_haralick
+        self.show_frame("FrameDescritoresHaralick")
