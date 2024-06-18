@@ -18,7 +18,7 @@ class SVM:
         """
         Construtor da classe.
         """
-        self.modelo = joblib.load("./inteligencia/svm.pkl")
+        self.modelo = joblib.load("./app/inteligencia/svm.pkl")
 
     def __pre_processar(self, imagem: Imagem):
         """

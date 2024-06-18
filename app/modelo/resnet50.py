@@ -15,7 +15,7 @@ class Resnet50:
         """
         Construtor da classe.
         """
-        self.modelo = load_model("./inteligencia/resnet50.h5")
+        self.modelo = load_model("./app/inteligencia/resnet50.h5")
 
     def __pre_processar(self, imagem: ImagemRGB):
         """
