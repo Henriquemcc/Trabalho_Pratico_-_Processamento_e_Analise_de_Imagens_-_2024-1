@@ -18,7 +18,12 @@ class SVM:
         """
         Construtor da classe.
         """
-        self.modelo = joblib.load("./app/inteligencia/svm.pkl")
+        caminho_modelo = "inteligencia/svm.pkl"
+        if os.path.exists(caminho_modelo):
+            self.modelo = joblib.load(caminho_modelo)
+        else:
+            os.makedirs(os.path.dirname(caminho_modelo), exist_ok=True)
+            print("Modelo não encontrado. Adicione o modelo em {}".format(caminho_modelo))
 
     def __pre_processar(self, imagem: Imagem):
         """
