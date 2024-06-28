@@ -156,7 +156,7 @@ Para baixar o projeto execute apenas um dos seguintes passos abaixo: 'Baixe o ar
 
 #### Baixe o arquivo ZIP
 
-Baixe o arquivo ZIP deste projeto através deste [link](../archive/refs/heads/readme.zip).
+Baixe o arquivo ZIP deste projeto através deste [link](https://github.com/Henriquemcc/Trabalho_Pratico_-_Processamento_e_Analise_de_Imagens_-_2024-1/archive/refs/heads/main.zip).
 
 Extraia o arquivo ZIP baixado.
 
