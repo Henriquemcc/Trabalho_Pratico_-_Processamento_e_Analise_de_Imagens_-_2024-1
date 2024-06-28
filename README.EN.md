@@ -95,6 +95,126 @@ Note: Higher quality work may earn extra points.
 
 Rezende, M.T., Silva, R., Bernardo, F.d.O. et al. Cric searchable image database as a public platform for conventional pap smear cytology data. Sci Data 8, 151 (2021). https://doi.org/10.1038/s41597-021-00933-8
 
+## Screenshots
+
+![A window with a frame and a menu bar. The menu bar contains the menus: 'Arquivo' (File), 'Visualizar' (View), 'Converter' (Convert), 'Histogramas' (Histograms), 'Caracterizar' (Characterize) and 'Classificar' (Classify). The window frame contains the names of the group members: 'Felipe Costa Amaral', 'Henrique Mendonça Castelar Campos' and 'Larissa Kaweski Siqueira'](screenshots/Captura_de_tela_2024-06-10_094756.png)
+
+*Main window, when the program starts.*
+
+![A window with an image frame and a menu bar. The menu bar contains the menus: 'Arquivo' (File), 'Visualizar' (View), 'Converter' (Convert), 'Histogramas' (Histograms), 'Caracterizar' (Characterize) and 'Classificar' (Classify). The image frame contains an image of a Pap smear cell.](screenshots/Captura_de_tela_2024-06-10_094827.png)
+
+*Main window, when an image is opened.*
+
+![A window with an image frame and a menu bar. The menu bar contains the menus: 'Arquivo' (File), 'Visualizar' (View), 'Converter' (Convert), 'Histogramas' (Histograms), 'Caracterizar' (Characterize) and 'Classificar' (Classify). The image frame contains an image of a Pap smear cell. The image is in black and white.](screenshots/Captura_de_tela_2024-06-10_094843.png)
+
+*Main window, displaying a grayscale image.*
+
+![A window with an image frame and a menu bar. The menu bar contains the menus: 'Arquivo' (File), 'Visualizar' (View), 'Converter' (Convert), 'Histogramas' (Histograms), 'Caracterizar' (Characterize) and 'Classificar' (Classify). The image frame contains an image of a Pap smear cell. The image has a different color scheme.](screenshots/Captura_de_tela_2024-06-10_094858.png)
+
+*Main window, displaying an HSV image.*
+
+![A window with a frame with a histogram and a menu bar. The menu bar contains the menus: 'Arquivo' (File), 'Visualizar' (View), 'Converter' (Convert), 'Histogramas' (Histograms), 'Caracterizar' (Characterize) and 'Classificar' (Classify). The histogram is represented by a 13-bar bar graph.](screenshots/Captura_de_tela_2024-06-10_094919.png)
+
+*Main window, displaying the histogram of an image in shades of gray.*
+
+![A window with a frame with a histogram and a menu bar. The menu bar contains the menus: 'Arquivo' (File), 'Visualizar' (View), 'Converter' (Convert), 'Histogramas' (Histograms), 'Caracterizar' (Characterize) and 'Classificar' (Classify). The histogram is represented by a 16-bar bar graph.](screenshots/Captura_de_tela_2024-06-10_094944.png)
+
+*Main window, displaying the Hue histogram of the HSV image.*
+
+![A window with a frame with a histogram and a menu bar. The menu bar contains the menus: 'Arquivo' (File), 'Visualizar' (View), 'Converter' (Convert), 'Histogramas' (Histograms), 'Caracterizar' (Characterize) and 'Classificar' (Classify). The histogram is represented by a bar graph.](screenshots/Captura_de_tela_2024-06-10_095002.png)
+
+*Main window, displaying the Saturation histogram of the HSV image.*
+
+![A window with a frame with a histogram and a menu bar. The menu bar contains the menus: 'Arquivo' (File), 'Visualizar' (View), 'Converter' (Convert), 'Histogramas' (Histograms), 'Caracterizar' (Characterize) and 'Classificar' (Classify). The histogram is represented by a bar graph.](screenshots/Captura_de_tela_2024-06-10_095102.png)
+
+*Main window, displaying the Value histogram of the HSV image.*
+
+![A window with a frame with a histogram and a menu bar. The menu bar contains the menus: 'Arquivo' (File), 'Visualizar' (View), 'Converter' (Convert), 'Histogramas' (Histograms), 'Caracterizar' (Characterize) and 'Classificar' (Classify). The histogram is represented by a 2D bar graph.](screenshots/Captura_de_tela_2024-06-10_095121.png)
+
+*Main window, displaying the 2D histogram of the HSV image.*
+
+![A window with the image classification frame and a menu bar. The menu bar contains the menus: 'Arquivo' (File), 'Visualizar' (View), 'Converter' (Convert), 'Histogramas' (Histograms), 'Caracterizar' (Characterize) and 'Classificar' (Classify). The image classification frame has the title: 'Classificador' (Classifier), and a subtitle 'Tipo de classificação' (Classification type), the radio buttons 'Binário' (Binary) and 'Multiclasse' (Multiclass), and the buttons 'Classificar SVM' (Classify SVM) and 'Classificar ResNet50' (Classify ResNet50), and the texts 'ASC-H' and 'Trmpo gasto: 0.0720735s' (Time taken: 0.0720735s).](screenshots/Captura_de_tela_2024-06-16_120712.png)
+
+*Main window, displaying options for classifying the image.*
+
+![A window with a frame with Hu Invariant Moments and a menu bar. The menu bar contains the menus: 'Arquivo' (File), 'Visualizar' (View), 'Converter' (Convert), 'Histogramas' (Histograms), 'Caracterizar' (Characterize) and 'Classificar' (Classify). The frame with the Invariant Moments of Hu has the title 'Momentos Invariante de Hu' (Invariant Moments of Hu), and the texts: '2.9908410420185008', '8.579090833437313', '11.120241129487834', '11.037662984594114', '-22.1187638' 5396171', '-15.528629006286437' and '23.11996647629501'.](screenshots/Captura_de_tela_2024-06-16_215855.png)
+
+*Main window, showing Hu Invariant Moments.*
+
+![A window with a frame with Haralick Descriptors and a menu bar. The menu bar contains the menus: 'Arquivo' (File), 'Visualizar' (View), 'Converter' (Convert), 'Histogramas' (Histograms), 'Caracterizar' (Characterize) and 'Classificar' (Classify). The frame with Haralick Descriptors has the title 'Descritores de Haralick' (Haralick Descriptors), and the texts: 'contrast: 109.5192490562188', 'dissimilarity: 7.208828690949891', 'homogeneity: 0.1580393989047433', 'energy: 0.020326476858 105555', 'correlation: 0.9743702523392569', 'ASM: 0.0004155669006214171'](screenshots/Captura_de_tela_2024-06-16_215907.png)
+
+*Main window, showing Haralick Descriptors.*
+
+## How to run
+
+To run the program, follow these steps:
+
+### Use a virtual environment (optional)
+
+#### Create the virtual environment
+
+In the shell (Terminal, Command Prompt or PowerShell) inside the project folder, type:
+
+```
+python3 -m venv venv
+```
+
+or
+
+```
+python -m venv venv
+```
+
+#### Activate the virtual environment
+
+If your shell (Terminal, Command Prompt or PowerShell) is Linux or Mac OS Bash, inside the project folder, type:
+
+```
+source venv/bin/activate
+```
+
+If your shell (Terminal, Command Prompt or PowerShell) is Windows Command Prompt, inside the project folder, type:
+
+```
+venv\Scripts\activate.bat
+```
+
+If your shell (Terminal, Command Prompt or PowerShell) is Windows PowerShell, inside the project folder, type:
+
+```
+.\venv\Scripts\Activate.ps1
+```
+
+### Install the dependencies
+
+In the shell (Terminal, Command Prompt or PowerShell) inside the project folder, type:
+
+```
+pip install -r requirements.txt
+```
+
+### Download the classification models
+
+In [releases](https://github.com/Henriquemcc/Trabalho_Pratico_-_Processamento_e_Analise_de_Imagens_-_2024-1/releases), download the file ['inteligencia-20240617T013308Z-001.zip'](https://github.com/Henriquemcc/Trabalho_Pratico_-_Processamento_e_Analise_de_Imagens_-_2024-1/releases/download/0/inteligencia-20240617T013308Z-001.zip) and extract it.
+
+Create a folder called 'inteligencia' in the root of the project and place the files 'svm.pkl' and 'resnet50.h5' inside it.
+
+### Run the program
+
+In the shell (Terminal, Command Prompt or PowerShell) inside the project folder, type:
+
+```
+python3 app
+```
+
+or
+
+```
+python app
+```
+
+And a program window will open.
+
 ## Group members
 
 [Felipe Costa Amaral](https://github.com/Flipecs)

@@ -95,6 +95,127 @@ Obs: Trabalhos de qualidade superior poderão ganhar pontos extras.
 
 Rezende, M.T., Silva, R., Bernardo, F.d.O. et al. Cric searchable image database as a public platform for conventional pap smear cytology data. Sci Data 8, 151 (2021). https://doi.org/10.1038/s41597-021-00933-8
 
+## Capturas de tela
+
+![Uma janela com um frame e uma barra de menus. A barra de menus contém os menús: 'Arquivo', 'Visualizar', 'Converter', 'Histogramas', 'Caracterizar' e 'Classificar'. O frame da janela contém s nomes dos integrantes do grupo: 'Felipe Costa Amaral', 'Henrique Mendonça Castelar Campos' e 'Larissa Kaweski Siqueira'](screenshots/Captura_de_tela_2024-06-10_094756.png)
+
+*Janela principal, quando o programa é iniciado.*
+
+![Uma janela com um frame de imagem e uma barra de menus. A barra de menus contém os menús: 'Arquivo', 'Visualizar', 'Converter', 'Histogramas', 'Caracterizar' e 'Classificar'. O frame de imagem contém uma imagem de uma célula do exame Papanicolau.](screenshots/Captura_de_tela_2024-06-10_094827.png)
+
+*Janela principal, quando uma imagem é aberta.*
+
+![Uma janela com um frame de imagem e uma barra de menus. A barra de menus contém os menús: 'Arquivo', 'Visualizar', 'Converter', 'Histogramas', 'Caracterizar' e 'Classificar'. O frame de imagem contém uma imagem de uma célula do exame Papanicolau. A imagem está em preto e branco.](screenshots/Captura_de_tela_2024-06-10_094843.png)
+
+*Janela principal, exibindo uma imagem em tons de cinza.*
+
+![Uma janela com um frame de imagem e uma barra de menus. A barra de menus contém os menús: 'Arquivo', 'Visualizar', 'Converter', 'Histogramas', 'Caracterizar' e 'Classificar'. O frame de imagem contém uma imagem de uma célula do exame Papanicolau. A imagem está com outro esquema de cores.](screenshots/Captura_de_tela_2024-06-10_094858.png)
+
+*Janela principal, exibindo uma imagem HSV.*
+
+![Uma janela com um frame com um histograma e uma barra de menus. A barra de menus contém os menús: 'Arquivo', 'Visualizar', 'Converter', 'Histogramas', 'Caracterizar' e 'Classificar'. O histograma está representado por um gráfico de barras de 13 barras.](screenshots/Captura_de_tela_2024-06-10_094919.png)
+
+*Janela principal, exibindo o histograma de uma imagem em tons de
+cinza.*
+
+![Uma janela com um frame com um histograma e uma barra de menus. A barra de menus contém os menús: 'Arquivo', 'Visualizar', 'Converter', 'Histogramas', 'Caracterizar' e 'Classificar'. O histograma está representado por um gráfico de barras de 16 barras.](screenshots/Captura_de_tela_2024-06-10_094944.png)
+
+*Janela principal, exibindo o histograma Hue da imagem HSV.*
+
+![Uma janela com um frame com um histograma e uma barra de menus. A barra de menus contém os menús: 'Arquivo', 'Visualizar', 'Converter', 'Histogramas', 'Caracterizar' e 'Classificar'. O histograma está representado por um gráfico de barras.](screenshots/Captura_de_tela_2024-06-10_095002.png)
+
+*Janela principal, exibindo o histograma Saturation da imagem HSV.*
+
+![Uma janela com um frame com um histograma e uma barra de menus. A barra de menus contém os menús: 'Arquivo', 'Visualizar', 'Converter', 'Histogramas', 'Caracterizar' e 'Classificar'. O histograma está representado por um gráfico de barras.](screenshots/Captura_de_tela_2024-06-10_095102.png)
+
+*Janela principal, exibindo o histograma Value da imagem HSV.*
+
+![Uma janela com um frame com um histograma e uma barra de menus. A barra de menus contém os menús: 'Arquivo', 'Visualizar', 'Converter', 'Histogramas', 'Caracterizar' e 'Classificar'. O histograma está representado por um gráfico de barras 2D.](screenshots/Captura_de_tela_2024-06-10_095121.png)
+
+*Janela principal, exibindo o histograma 2D da imagem HSV.*
+
+![Uma janela com o frame de classificação de imagens e uma barra de menus. A barra de menus contém os menús: 'Arquivo', 'Visualizar', 'Converter', 'Histogramas', 'Caracterizar' e 'Classificar'. O frame de classificação de imagem possuí o título: 'Classificador', e um subtitulo 'Tipo de classificação', os radio buttons 'Binário' e 'Multiclasse', e os botões 'Classificar SVM' e 'Classificar ResNet50', e os textos 'ASC-H' e 'Tempo gasto: 0.0720735s'.](screenshots/Captura_de_tela_2024-06-16_120712.png)
+
+*Janela principal, exibindo as opções para classificar a imagem.*
+
+![Uma janela com um frame com os Momentos Invariantes de Hu e uma barra de menus. A barra de menus contém os menús: 'Arquivo', 'Visualizar', 'Converter', 'Histogramas', 'Caracterizar' e 'Classificar'. O frame com os Momentos Invariantes de Hu possuí o título 'Momentos Invariante de Hu', e os textos: '2.9908410420185008', '8.579090833437313', '11.120241129487834', '11.037662984594114', '-22.11876385396171', '-15.528629006286437' e '23.11996647629501'.](screenshots/Captura_de_tela_2024-06-16_215855.png)
+
+*Janela principal, mostrando os Momentos Invariantes de Hu.*
+
+![Uma janela com um frame com os Descritores de Haralick e uma barra de menus. A barra de menus contém os menús: 'Arquivo', 'Visualizar', 'Converter', 'Histogramas', 'Caracterizar' e 'Classificar'. O frame com os Descritores de Haralick possuí o título 'Descritores de Haralick', e os textos: 'contrast: 109.5192490562188', 'dissimilarity: 7.208828690949891', 'homogeneity: 0.1580393989047433', 'energy: 0.020326476858105555', 'correlation: 0.9743702523392569', 'ASM: 0.0004155669006214171'](screenshots/Captura_de_tela_2024-06-16_215907.png)
+
+*Janela principal, mostrando os Descritores de Haralick.*
+
+## Como executar
+
+Para executar o programa, siga os seguintes passos:
+
+### Use um ambiente virtual (opcional)
+
+#### Crie o ambiente virtual
+
+No shell (Terminal, Prompt de Comando ou PowerShell) dentro da pasta do projeto, digite:
+
+```
+python3 -m venv venv
+```
+
+ou
+
+```
+python -m venv venv
+```
+
+#### Ative o ambiente virtual
+
+Se o seu shell (Terminal, Prompt de Comando ou PowerShell) for o Bash do Linux ou Mac OS, dentro da pasta do projeto, digite:
+
+```
+source venv/bin/activate
+```
+
+Se o seu shell (Terminal, Prompt de Comando ou PowerShell) for o Prompt de Comando do Windows, dentro da pasta do projeto, digite:
+
+```
+venv\Scripts\activate.bat
+```
+
+Se o seu shell (Terminal, Prompt de Comando ou PowerShell) for o PowerShell do Windows, dentro da pasta do projeto, digite:
+
+```
+.\venv\Scripts\Activate.ps1
+```
+
+### Instale as dependências
+
+No shell (Terminal, Prompt de Comando ou PowerShell) dentro da pasta do projeto, digite:
+
+```
+pip install -r requirements.txt
+```
+
+### Baixe os modelos de classificação
+
+Em [releases](https://github.com/Henriquemcc/Trabalho_Pratico_-_Processamento_e_Analise_de_Imagens_-_2024-1/releases), baixe o arquivo ['inteligencia-20240617T013308Z-001.zip'](https://github.com/Henriquemcc/Trabalho_Pratico_-_Processamento_e_Analise_de_Imagens_-_2024-1/releases/download/0/inteligencia-20240617T013308Z-001.zip) e o extraia.
+
+Crie uma pasta chamada 'inteligencia' na raiz do projeto e coloque os arquivos 'svm.pkl' e 'resnet50.h5' dentro dela.
+
+### Execute o programa
+
+No shell (Terminal, Prompt de Comando ou PowerShell) dentro da pasta do projeto, digite:
+
+```
+python3 app
+```
+
+ou
+
+```
+python app
+```
+
+E uma janela do programa se abrirá.
+
 ## Membros do Grupo
 
 [Felipe Costa Amaral](https://github.com/Flipecs)
