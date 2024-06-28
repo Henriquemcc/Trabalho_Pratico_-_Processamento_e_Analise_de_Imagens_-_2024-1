@@ -168,7 +168,7 @@ python -m venv venv
 
 #### Ative o ambiente virtual
 
-Se o seu shell (Terminal, Prompt de Comando ou PowerShell) for o bash do Linux ou Mac OS, dentro da pasta do projeto, digite:
+Se o seu shell (Terminal, Prompt de Comando ou PowerShell) for o Bash do Linux ou Mac OS, dentro da pasta do projeto, digite:
 
 ```
 source venv/bin/activate
@@ -186,7 +186,7 @@ Se o seu shell (Terminal, Prompt de Comando ou PowerShell) for o PowerShell do W
 .\venv\Scripts\Activate.ps1
 ```
 
-### Instale os pacotes
+### Instale as dependências
 
 No shell (Terminal, Prompt de Comando ou PowerShell) dentro da pasta do projeto, digite:
 
@@ -196,7 +196,7 @@ pip install -r requirements.txt
 
 ### Baixe os modelos de classificação
 
-Em [releases](https://github.com/Henriquemcc/Trabalho_Pratico_-_Processamento_e_Analise_de_Imagens_-_2024-1/releases), baixe o arquivo ['inteligencia-20240617T013308Z-001.zip'](https://github.com/Henriquemcc/Trabalho_Pratico_-_Processamento_e_Analise_de_Imagens_-_2024-1/releases/download/0/inteligencia-20240617T013308Z-001.zip) e extraia os arquivos.
+Em [releases](https://github.com/Henriquemcc/Trabalho_Pratico_-_Processamento_e_Analise_de_Imagens_-_2024-1/releases), baixe o arquivo ['inteligencia-20240617T013308Z-001.zip'](https://github.com/Henriquemcc/Trabalho_Pratico_-_Processamento_e_Analise_de_Imagens_-_2024-1/releases/download/0/inteligencia-20240617T013308Z-001.zip) e o extraia.
 
 Crie uma pasta chamada 'inteligencia' na raiz do projeto e coloque os arquivos 'svm.pkl' e 'resnet50.h5' dentro dela.
 
