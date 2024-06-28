@@ -150,6 +150,26 @@ cinza.*
 
 Para executar o programa, siga os seguintes passos:
 
+### Baixe o projeto
+
+Para baixar o projeto execute apenas um dos seguintes passos abaixo: 'Baixe o arquivo ZIP' ou 'Clone o Repositório'.
+
+#### Baixe o arquivo ZIP
+
+Baixe o arquivo ZIP deste projeto através deste [link](../archive/refs/heads/readme.zip).
+
+Extraia o arquivo ZIP baixado.
+
+#### Clone o repositório
+
+Clique no botão 'Code' (em verde) e copie o link.
+
+No shell (Terminal, Prompt de Comando ou PowerShell), digite:
+
+```
+git clone <URL-COPIADO>
+```
+
 ### Use um ambiente virtual (opcional)
 
 #### Crie o ambiente virtual
