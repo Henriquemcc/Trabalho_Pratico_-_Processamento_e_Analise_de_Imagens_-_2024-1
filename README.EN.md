@@ -95,7 +95,7 @@ Note: Higher quality work may earn extra points.
 
 Rezende, M.T., Silva, R., Bernardo, F.d.O. et al. Cric searchable image database as a public platform for conventional pap smear cytology data. Sci Data 8, 151 (2021). https://doi.org/10.1038/s41597-021-00933-8
 
-## Screernshots
+## Screenshots
 
 ![A window with a frame and a menu bar. The menu bar contains the menus: 'Arquivo' (File), 'Visualizar' (View), 'Converter' (Convert), 'Histogramas' (Histograms), 'Caracterizar' (Characterize) and 'Classificar' (Classify). The window frame contains the names of the group members: 'Felipe Costa Amaral', 'Henrique Mendonça Castelar Campos' and 'Larissa Kaweski Siqueira'](screenshots/Captura_de_tela_2024-06-10_094756.png)
 
