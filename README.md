@@ -150,26 +150,6 @@ cinza.*
 
 Para executar o programa, siga os seguintes passos:
 
-### Baixe o projeto
-
-Para baixar o projeto execute apenas um dos seguintes passos abaixo: 'Baixe o arquivo ZIP' ou 'Clone o Repositório'.
-
-#### Baixe o arquivo ZIP
-
-Baixe o arquivo ZIP deste projeto através deste [link](https://github.com/Henriquemcc/Trabalho_Pratico_-_Processamento_e_Analise_de_Imagens_-_2024-1/archive/refs/heads/main.zip).
-
-Extraia o arquivo ZIP baixado.
-
-#### Clone o repositório
-
-Clique no botão 'Code' (em verde) e copie o link.
-
-No shell (Terminal, Prompt de Comando ou PowerShell), digite:
-
-```
-git clone <URL-COPIADO>
-```
-
 ### Use um ambiente virtual (opcional)
 
 #### Crie o ambiente virtual
